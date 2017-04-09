@@ -23,6 +23,12 @@ Install dependencies from requirements files::
    $ brew services start postgresql
 
 
+Set up database::
+
+   $ createdb scrappyr
+   $ python manage.py migrate
+
+
 Verify installation
 ...................
 
@@ -30,3 +36,6 @@ Execute tests to verify installation::
 
    $ py.test
 
+Then, verify that you can start the application server::
+
+   $ python manage.py runserver
