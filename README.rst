@@ -1,7 +1,8 @@
 scrappyr
 ========
 
-A simple app for managing scraps of information
+A simple app for managing scraps of information. This app was created using the `Cookiecutter
+Django`_ template. See `installation instructions`_ for how to setup your development environment.
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
@@ -10,8 +11,9 @@ A simple app for managing scraps of information
 
 :License: MIT
 
-See `installation instructions`_.
 
+.. _Cookiecutter Django:
+   http://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html
 .. _installation instructions: ./docs/install.rst
 
 
@@ -24,6 +26,16 @@ Moved to settings_.
 
 Basic Commands
 --------------
+
+Database migrations
+....................
+
+When you make changes to models that require data migration, you run the following commands to
+create migrations and apply them::
+
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+
 
 Setting Up Your Users
 .....................
