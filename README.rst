@@ -11,6 +11,39 @@ A simple app for managing scraps of information
 :License: MIT
 
 
+Install
+-------
+
+Setup Virtual Environment
+.........................
+
+This repository was created with the following::
+
+   $ pyenv install 3.6.1
+   $ pyenv virtualenv 3.6.1 scrappyr-django
+
+Note that this repo includes a `.python-version` file that points to `scrappyr-django`. pyenv
+will automatically switch to the `scrappyr-django` virtualenv.
+
+Install dependencies
+....................
+
+Install dependencies from requirements files::
+
+   $ pip install -r requirements/local.py
+
+   $ brew install postgres
+   $ brew services start postgresql
+
+
+Verify installation
+...................
+
+Execute tests to verify installation::
+
+   $ py.test
+
+
 Settings
 --------
 
@@ -22,7 +55,7 @@ Basic Commands
 --------------
 
 Setting Up Your Users
-^^^^^^^^^^^^^^^^^^^^^
+.....................
 
 * To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
 
@@ -33,13 +66,14 @@ Setting Up Your Users
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
 Test coverage
-^^^^^^^^^^^^^
+.............
 
 To run the tests, check your test coverage, and generate an HTML coverage report::
 
     $ coverage run manage.py test
     $ coverage html
     $ open htmlcov/index.html
+
 
 Running tests with py.test
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +83,7 @@ Running tests with py.test
   $ py.test
 
 Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.......................................
 
 Moved to `Live reloading and SASS compilation`_.
 
@@ -60,7 +94,7 @@ Moved to `Live reloading and SASS compilation`_.
 
 
 Sentry
-^^^^^^
+......
 
 Sentry is an error logging aggregator service. You can sign up for a free account at  https://sentry.io/signup/?code=cookiecutter  or download and host it yourself.
 The system is setup with reasonable defaults, including 404 logging and integration with the WSGI application.
