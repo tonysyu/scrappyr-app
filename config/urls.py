@@ -18,6 +18,7 @@ urlpatterns = [
 
     # User management
     url(r'^users/', include('scrappyr.users.urls', namespace='users')),
+    url(r'^scraps/', include('scrappyr.scraps.urls', namespace='scraps')),
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here

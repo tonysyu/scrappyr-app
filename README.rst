@@ -62,6 +62,19 @@ scraps of data), run::
    $ mkdir scrappyr/scraps
    $ python manage.py startapp scraps scrappyr/scraps
 
+Unfortunately, the management command doesn't correctly setup the `AppComfig` for the new app.
+You'll need to open `./scrappyr/scraps/app.py` and change the `name` from `'scraps'` to
+`'scrappyr.scraps'`.
+
+Next, you'll need to register the new app in `INSTALLED_APPS` (under `LOCAL_APPS`).
+
+If you add any models to the new app, you'll have need to make Django aware of the app::
+
+   $ python manage.py makemigrations scraps
+
+To add url routing for the new app, you'll need to add the following line to `./config/urls.py`::
+
+    url(r'^scraps/', include('scrappyr.scraps.urls', namespace='scraps')),
 
 Test coverage
 .............
@@ -71,6 +84,13 @@ To run the tests, check your test coverage, and generate an HTML coverage report
     $ coverage run manage.py test
     $ coverage html
     $ open htmlcov/index.html
+
+
+Troubleshooting
+...............
+
+If you run into problems, try running::
+   $ python manage.py check
 
 
 Running tests with py.test
