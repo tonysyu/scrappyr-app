@@ -24,6 +24,7 @@ Moved to settings_.
 
 .. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
 
+
 Basic Commands
 --------------
 
@@ -47,6 +48,20 @@ Setting Up Your Users
     $ python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+
+
+Creating a new app
+..................
+
+Note that django "apps" is distinct from the django project's web application. django apps are
+small, function components that make up the web application. To create a new app, you'll need to
+create a new directory for the app from this directory and use the management command to create
+the app. For example, to create the `scraps` app (which is used to store, list, and create
+scraps of data), run::
+
+   $ mkdir scrappyr/scraps
+   $ python manage.py startapp scraps scrappyr/scraps
+
 
 Test coverage
 .............
