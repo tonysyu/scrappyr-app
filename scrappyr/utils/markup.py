@@ -8,6 +8,7 @@ _MARKUP_CONVERTER = {
 }
 
 LANGUAGES = _MARKUP_CONVERTER.keys()
+DEFAULT_LANGUAGE = MARKDOWN
 
 
 def _render_markdown(text):

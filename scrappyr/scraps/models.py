@@ -1,5 +1,6 @@
 from django.db import models
 
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from model_utils import Choices
@@ -12,20 +13,14 @@ class Scrap(TimeStampedModel):
 
     MARKUP_LANGUAGE = Choices(*markup.LANGUAGES)
 
-    _raw_title = models.CharField(_('Raw scrap title'), max_length=100)
-    _html_title = models.CharField(_('Html-formatted scrap title'), max_length=300)
-    markup_type = models.CharField(choices=MARKUP_LANGUAGE, max_length=10)
+    raw_title = models.CharField(_('Raw scrap title'), max_length=100)
+    markup_type = models.CharField(choices=MARKUP_LANGUAGE, max_length=10,
+                                   default=markup.DEFAULT_LANGUAGE)
 
-    @property
-    def raw_title(self):
-        return self._raw_title
-
-    @raw_title.setter
-    def raw_title(self, value):
-        self._raw_title = value
-        convert = _MARKUP_CONVERTER[self.markup_type]
-        self._html_title = convert(value)
-
-    @property
+    @cached_property
     def html_title(self):
-        return self._html_title
+        convert = markup.html_renderer_for(self.markup_type)
+        return convert(self.raw_title)
+
+    def __str__(self):
+        return self.raw_title
