@@ -1,3 +1,4 @@
+========
 scrappyr
 ========
 
@@ -18,7 +19,7 @@ Django`_ template. See `installation instructions`_ for how to setup your develo
 
 
 Settings
---------
+========
 
 Moved to settings_.
 
@@ -26,10 +27,11 @@ Moved to settings_.
 
 
 Basic Commands
---------------
+==============
+
 
 Database migrations
-....................
+-------------------
 
 When you make changes to models that require data migration, you run the following commands to
 create migrations and apply them::
@@ -39,7 +41,7 @@ create migrations and apply them::
 
 
 Setting Up Your Users
-.....................
+---------------------
 
 * To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
 
@@ -51,7 +53,7 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 
 Creating a new app
-..................
+------------------
 
 Note that django "apps" is distinct from the django project's web application. django apps are
 small, function components that make up the web application. To create a new app, you'll need to
@@ -76,32 +78,40 @@ To add url routing for the new app, you'll need to add the following line to `./
 
     url(r'^scraps/', include('scrappyr.scraps.urls', namespace='scraps')),
 
-Test coverage
-.............
 
-To run the tests, check your test coverage, and generate an HTML coverage report::
-
-    $ coverage run manage.py test
-    $ coverage html
-    $ open htmlcov/index.html
-
+Quality Control
+===============
 
 Troubleshooting
-...............
+---------------
 
 If you run into problems, try running::
+
    $ python manage.py check
 
 
-Running tests with py.test
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running tests
+-------------
+
+To run the full test suite, run::
+
+    $ py.test
+
+If you want include code coverage, run::
+
+    $ py.test --cov=scrappyr
+
+
+Linting
+=======
 
 ::
 
-  $ py.test
+   flake8
+
 
 Live reloading and Sass CSS compilation
-.......................................
+=======================================
 
 Moved to `Live reloading and SASS compilation`_.
 
@@ -109,21 +119,11 @@ Moved to `Live reloading and SASS compilation`_.
 
 
 
-
-
 Sentry
-......
+======
 
-Sentry is an error logging aggregator service. You can sign up for a free account at  https://sentry.io/signup/?code=cookiecutter  or download and host it yourself.
-The system is setup with reasonable defaults, including 404 logging and integration with the WSGI application.
+Sentry is an error logging aggregator service. You can sign up for a free account at
+https://sentry.io/signup/?code=cookiecutter or download and host it yourself. The system is setup
+with reasonable defaults, including 404 logging and integration with the WSGI application.
 
 You must set the DSN url in production.
-
-
-Deployment
-----------
-
-The following details how to deploy this application.
-
-
-
