@@ -95,12 +95,15 @@ Running tests
 
 To run the full test suite, run::
 
-    $ py.test
+    $ pytest
 
 If you want include code coverage, run::
 
-    $ py.test --cov=scrappyr
+    $ pytest --cov=scrappyr
 
+And if you'd like to see the lines that aren't covered, run::
+
+    $ pytest --cov=scrappyr --cov-report term-missing
 
 Linting
 =======
