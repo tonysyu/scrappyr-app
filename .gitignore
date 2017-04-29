@@ -61,7 +61,7 @@ node_modules/
 
 # User-uploaded media
 scrappyr/media/
-
-
+# CSS files are built from sass
+scrappyr/static/css
 
 staticfiles/
