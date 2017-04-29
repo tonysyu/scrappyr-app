@@ -10,9 +10,12 @@ Local settings
 - Add django-extensions as app
 """
 
-import socket
 import os
+import socket
+
 from .base import *  # noqa
+# Explicit import reused variables to prevent flake8 errors:
+from .base import env, INSTALLED_APPS, MIDDLEWARE, TEMPLATES
 
 # DEBUG
 # ------------------------------------------------------------------------------

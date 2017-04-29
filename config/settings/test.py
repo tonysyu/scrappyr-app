@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Test settings
 
 - Used to run tests fast on the continuous integration server and locally
-'''
+"""
 
 from .base import *  # noqa
+# Explicit import reused variables to prevent flake8 errors:
+from .base import env, TEMPLATES
 
 
 # DEBUG

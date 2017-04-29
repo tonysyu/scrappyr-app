@@ -12,13 +12,14 @@ Production Configurations
 """
 from __future__ import absolute_import, unicode_literals
 
+import logging
+
 from boto.s3.connection import OrdinaryCallingFormat
 from django.utils import six
 
-import logging
-
-
 from .base import *  # noqa
+# Explicit import reused variables to prevent flake8 errors:
+from .base import DATABASES, env, INSTALLED_APPS, MIDDLEWARE, TEMPLATES
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -126,8 +127,12 @@ EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
 # See:
 # https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.loaders.cached.Loader
 TEMPLATES[0]['OPTIONS']['loaders'] = [
-    ('django.template.loaders.cached.Loader', [
-        'django.template.loaders.filesystem.Loader', 'django.template.loaders.app_directories.Loader', ]),
+    (
+        'django.template.loaders.cached.Loader', [
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        ]
+    ),
 ]
 
 # DATABASE CONFIGURATION
@@ -149,7 +154,7 @@ CACHES = {
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'IGNORE_EXCEPTIONS': True,  # mimics memcache behavior.
-                                        # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
+                                        # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior  # noqa
         }
     }
 }
@@ -157,7 +162,8 @@ CACHES = {
 
 # Sentry Configuration
 SENTRY_DSN = env('DJANGO_SENTRY_DSN')
-SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT', default='raven.contrib.django.raven_compat.DjangoClient')
+SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT',
+                    default='raven.contrib.django.raven_compat.DjangoClient')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
