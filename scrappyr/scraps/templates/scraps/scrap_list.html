@@ -2,7 +2,6 @@
 
 {% load crispy_forms_tags %}
 {% load staticfiles i18n %}
-<!DOCTYPE html>
 
 {% block css %}
   {{ block.super }}
@@ -27,6 +26,9 @@
   {% for scrap in object_list %}
   <div class="scrap">
     {{ scrap.html_title|safe }}
+    <button class="edit btn btn-sm btn-secondary">
+      Edit
+    </button>
   </div>
   {% endfor %}
 {% endblock %}

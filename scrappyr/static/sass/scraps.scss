@@ -1,13 +1,29 @@
+form.add-scrap {
+  margin: 30px 5px;
+}
+
 div.scrap, form.add-scrap {
   width: 400px;
-  margin: 5px;
 }
 
 div.scrap {
-  border: 1px solid lightgray;
+  position: relative;
+  margin: 10px 5px;
   padding: 10px 10px 5px 10px;
+  border: 1px solid lightgray;
 }
 
 div.scrap > h1 {
   font-size: 1em;
+}
+
+div.scrap > button.edit {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+div.scrap:hover > button.edit {
+  display: block;
 }
