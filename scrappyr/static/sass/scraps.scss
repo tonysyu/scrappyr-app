@@ -1,8 +1,11 @@
-div.scrap {
+div.scrap, form.add-scrap {
   width: 400px;
+  margin: 5px;
+}
+
+div.scrap {
   border: 1px solid lightgray;
   padding: 10px 10px 5px 10px;
-  margin: 5px;
 }
 
 div.scrap > h1 {

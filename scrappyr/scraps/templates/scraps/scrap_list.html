@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% load staticfiles i18n %}<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load staticfiles i18n %}
+<!DOCTYPE html>
 
 {% block css %}
   {{ block.super }}
@@ -8,6 +10,20 @@
 {% endblock %}
 
 {% block content %}
+
+  <form class="add-scrap" method="post" action="{% url 'scraps:list' %}">
+
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="btn">Add Scrap</button>
+      </div>
+    </div>
+
+  </form>
+
   {% for scrap in object_list %}
   <div class="scrap">
     {{ scrap.html_title|safe }}
