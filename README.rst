@@ -105,12 +105,17 @@ And if you'd like to see the lines that aren't covered, run::
 
     $ pytest --cov=scrappyr --cov-report term-missing
 
-Linting
-=======
 
-::
+Miscellaneous
+=============
+
+- Display issues with coding standards and style conventions::
 
    flake8
+
+- Create graph of object models::
+
+   python manage.py graph_models -ag -o scrappyr.pdf
 
 
 Live reloading and Sass CSS compilation
