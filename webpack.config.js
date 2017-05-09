@@ -9,8 +9,20 @@ module.exports = {
       path: path.resolve('./scrappyr/static/webpack_bundles/'),
       filename: "[name]-[hash].js"
   },
-
   plugins: [
-    new BundleTracker({filename: './webpack-stats.json'})
-  ]
+    new BundleTracker({filename: './webpack-stats.json'}),
+    new webpack.NoErrorsPlugin()
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        query: {
+          presets:['es2015', 'react']
+        },
+        include: path.join(__dirname, 'scrappyr/static/js')
+      }
+    ]
+  }
 }
