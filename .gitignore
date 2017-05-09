@@ -65,3 +65,5 @@ scrappyr/media/
 scrappyr/static/css
 
 staticfiles/
+scrappyr/static/webpack_bundles/
+webpack-stats.json

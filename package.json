@@ -1,9 +1,11 @@
 {
   "name": "scrappyr",
   "version": "0.1.0",
+  "scripts": {
+    "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch"
+  },
   "dependencies": {},
   "devDependencies": {
-    
     "browser-sync": "^2.14.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
@@ -16,8 +18,8 @@
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
-    "run-sequence": "^1.2.2"
-    
+    "run-sequence": "^1.2.2",
+    "webpack-bundle-tracker": "^0.2.0"
   },
   "engines": {
     "node": ">=0.8.0"
