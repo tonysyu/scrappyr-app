@@ -23,12 +23,6 @@
 
   </form>
 
-  {% for scrap in object_list %}
-  <div class="scrap">
-    {{ scrap.html_title|safe }}
-    <button class="edit btn btn-sm btn-secondary">
-      Edit
-    </button>
-  </div>
-  {% endfor %}
+  <div id="react-scrap-list"></div>
+
 {% endblock %}

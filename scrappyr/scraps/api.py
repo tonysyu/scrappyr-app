@@ -6,7 +6,7 @@ from . import models
 class ScrapSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Scrap
-        fields = ('raw_title', 'markup_type')
+        fields = ('raw_title', 'markup_type', 'html_title')
 
 
 class ScrapViewSet(viewsets.ModelViewSet):
