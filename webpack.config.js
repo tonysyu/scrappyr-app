@@ -19,7 +19,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         query: {
-          presets:['es2015', 'react']
+          presets:['es2015', 'es2017', 'react']
         },
         include: path.join(__dirname, 'scrappyr/static/js')
       }

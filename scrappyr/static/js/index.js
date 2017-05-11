@@ -20,19 +20,7 @@ Issues with the above approach:
 */
 $('.form-group').removeClass('row');
 
-import React from 'react';
-import { render } from 'react-dom';
-
-
-function withScraps() {
-    return (
-        fetch('/api/scraps')
-        .then(response => response.json())
-    );
-}
-
-
-withScraps().then((scraps) => {
-    console.log(scraps);
-    render(<p>Hi</p>, document.getElementById('react'))
-});
+// Leave index entry point with minimal code to avoid issues with code being hoisted to run
+// before 'babel-polyfill'. (See, http://stackoverflow.com/a/36628148/260303)
+import 'babel-polyfill';
+import './app';
