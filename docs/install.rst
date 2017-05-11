@@ -7,10 +7,10 @@ Setup Virtual Environment
 This repository was created with the following::
 
    $ pyenv install 3.6.1
-   $ pyenv virtualenv 3.6.1 scrappyr-django
+   $ pyenv virtualenv 3.6.1 scrappyr-app
 
-Note that this repo includes a `.python-version` file that points to `scrappyr-django`. pyenv
-will automatically switch to the `scrappyr-django` virtualenv.
+Note that this repo includes a `.python-version` file that points to `scrappyr-app`. pyenv
+will automatically switch to the `scrappyr-app` virtualenv.
 
 Install dependencies
 ....................
