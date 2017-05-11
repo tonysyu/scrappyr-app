@@ -9,6 +9,6 @@ urlpatterns = [
     url(
         regex=r'^$',
         view=views.ScrapListView.as_view(),
-        name='list'
+        name='list',
     ),
 ]

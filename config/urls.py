@@ -19,7 +19,9 @@ urlpatterns = [
     # User management
     url(r'^users/', include('scrappyr.users.urls', namespace='users')),
     url(r'^scraps/', include('scrappyr.scraps.urls', namespace='scraps')),
+    url(r'^api/', include('scrappyr.api.urls', namespace='api')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

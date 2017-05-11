@@ -23,4 +23,16 @@ $('.form-group').removeClass('row');
 import React from 'react';
 import { render } from 'react-dom';
 
-render(<p>Now, with react!</p>, document.getElementById('react'));
+
+function withScraps() {
+    return (
+        fetch('/api/scraps')
+        .then(response => response.json())
+    );
+}
+
+
+withScraps().then((scraps) => {
+    console.log(scraps);
+    render(<p>Hi</p>, document.getElementById('react'))
+});
