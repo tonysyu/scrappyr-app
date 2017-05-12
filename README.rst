@@ -42,6 +42,9 @@ Basic Commands
 Admin commands are implemented with a combination of Django's mangement command infrastructure
 and pyinvoke for easily creating custom commands. 
 
+Helping yourself
+----------------
+
 Django management commands
 ..........................
 
