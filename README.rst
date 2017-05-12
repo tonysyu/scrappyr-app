@@ -2,6 +2,8 @@
 scrappyr
 ========
 
+https://travis-ci.org/tonysyu/scrappyr-app.svg?branch=master
+
 A simple app for managing scraps of information. This app was created using the `Cookiecutter
 Django`_ template. See `installation instructions`_ for how to setup your development environment.
 
