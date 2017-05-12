@@ -2,7 +2,8 @@
   "name": "scrappyr",
   "version": "0.1.0",
   "scripts": {
-    "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch"
+    "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch",
+    "build-static": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "dependencies": {
     "express": "^4.13.4",

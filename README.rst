@@ -39,6 +39,34 @@ Moved to settings_.
 Basic Commands
 ==============
 
+Admin commands are implemented with a combination of Django's mangement command infrastructure
+and pyinvoke for easily creating custom commands. 
+
+Django management commands
+..........................
+
+To list all management commands, you can run::
+
+   $ python manage.py help
+
+To show help for a specific command, just add the `--help` flag *after* the command. For example,
+if you wanted help with the `runserver` command, run::
+
+   $ python manage.py runserver --help
+
+Invoke commands
+...............
+
+[Invoke](http://docs.pyinvoke.org/en/0.11.0/getting_started.html) (a.k.a. pyinvoke) allows you
+to easily create custom commands for general administration of the project. To list available
+commands, run::
+
+   $ invoke --list
+
+To get additional help on a specific command, add the `--help` flag *before* the command::
+
+   $ invoke --help clean
+
 
 Database migrations
 -------------------
@@ -75,10 +103,9 @@ create a new directory for the app from this directory and use the management co
 the app. For example, to create the `scraps` app (which is used to store, list, and create
 scraps of data), run::
 
-   $ mkdir scrappyr/scraps
-   $ python manage.py startapp scraps scrappyr/scraps
+   $ invoke createapp scraps
 
-Unfortunately, the management command doesn't correctly setup the `AppComfig` for the new app.
+Unfortunately, the management command doesn't correctly setup the `AppConfig` for the new app.
 You'll need to open `./scrappyr/scraps/app.py` and change the `name` from `'scraps'` to
 `'scrappyr.scraps'`.
 
@@ -93,43 +120,17 @@ To add url routing for the new app, you'll need to add the following line to `./
     url(r'^scraps/', include('scrappyr.scraps.urls', namespace='scraps')),
 
 
-Quality Control
-===============
-
-Troubleshooting
----------------
-
-If you run into problems, try running::
-
-   $ python manage.py check
-
-
 Running tests
 -------------
 
 To run the full test suite, run::
 
-    $ pytest
+    $ invoke test
 
-If you want include code coverage, run::
+In addition to running automated tests, this also runs code quality checks (django checks, flake8).
+By default, the test run includes code coverage. If you want to skip coverge, run::
 
-    $ pytest --cov=scrappyr
-
-And if you'd like to see the lines that aren't covered, run::
-
-    $ pytest --cov=scrappyr --cov-report term-missing
-
-
-Miscellaneous
-=============
-
-- Display issues with coding standards and style conventions::
-
-   flake8
-
-- Create graph of object models::
-
-   python manage.py graph_models -ag -o scrappyr.pdf
+    $ invoke test --no-coverage
 
 
 Live reloading and Sass CSS compilation
