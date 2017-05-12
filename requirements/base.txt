@@ -20,7 +20,7 @@ django-model-utils==2.6.1
 
 # API
 djangorestframework==3.6.2
-django-filter-1.0.2
+django-filter==1.0.2
 
 # Images
 Pillow==4.0.0
