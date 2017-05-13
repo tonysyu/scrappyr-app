@@ -49,7 +49,7 @@ def clean(ctx, docs=True, bytecode=True, static_files=True, extra=''):
         patterns.append('docs/_build')
     if bytecode:
         patterns.append('**/*.pyc')
-        patterns.append('**/__pycache__/*')
+        patterns.append('`find . -name __pycache__ -type d`')
     if static_files:
         patterns.append('scrappyr/static/webpack_bundles/')
     if extra:
