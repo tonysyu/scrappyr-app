@@ -4,8 +4,7 @@ import Button from './Button';
 import Welcome from './Welcome';
 import Scrap from '../scrappyr/static/js/scraps/components/scrap.js'
 
-import '../scrappyr/static/sass/project.scss'
-import '../scrappyr/static/sass/scraps.scss'
+import '../scrappyr/static/sass/main.scss'
 
 
 storiesOf('Welcome', module)
