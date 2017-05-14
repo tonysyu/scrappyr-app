@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "scripts": {
     "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch",
-    "build-static": "./node_modules/.bin/webpack --config webpack.config.js"
+    "build-static": "./node_modules/.bin/webpack --config webpack.config.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "express": "^4.13.4",
@@ -19,6 +21,7 @@
     "redux": "^3.5.2"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.21.0",
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
@@ -48,10 +51,12 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "mocha": "^2.4.5",
+    "node-sass": "^4.5.2",
     "react-addons-test-utils": "^15.0.2",
     "run-sequence": "^1.2.2",
+    "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0",
+    "webpack": "^1.15.0",
     "webpack-bundle-tracker": "^0.2.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
