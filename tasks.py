@@ -1,10 +1,10 @@
 from invoke import task
 
 
-@task
-def runserver(ctx, pty=True):
+@task(aliases=['dev-server'])
+def dev_server(ctx, pty=True):
     """Run django dev server."""
-    ctx.run('python manage.py runserver', pty=pty)
+    ctx.run('python manage.py runserver | npm run watch-static', pty=pty)
 
 
 @task
@@ -63,12 +63,6 @@ def clean(ctx, docs=True, bytecode=True, static_files=True, extra=''):
         patterns.append(extra)
     for pattern in patterns:
         ctx.run('rm -rf {0}'.format(pattern))
-
-
-@task
-def serve_static(ctx, pty=True):
-    """Run webpack server to build static files when files are changed."""
-    ctx.run('npm run watch-static', pty=pty)
 
 
 @task
