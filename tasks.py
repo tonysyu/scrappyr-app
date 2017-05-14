@@ -16,18 +16,25 @@ def build(ctx):
 
 @task
 def test(ctx, coverage=True, pty=True):
-    """Run automated tests and code quality checks."""
+    """Run automated tests."""
     test_cmd = 'pytest'
     test_cmd += ' --cov=scrappyr --cov-report term-missing' if coverage else ''
 
     print_header('Automated tests')
     ctx.run(test_cmd, pty=pty)
 
+
+@task
+def check(ctx, pty=True):
+    """Run code quality checks."""
     print_header('Django check')
     ctx.run('python manage.py check', pty=pty)
 
     print_header('Flake8')
     ctx.run('flake8', pty=pty)
+
+    print_header('eslint')
+    ctx.run('./node_modules/.bin/eslint -c eslintrc  scrappyr/static/js/**', pty=pty)
 
 
 @task
