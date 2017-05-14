@@ -3,7 +3,7 @@ from invoke import task
 
 @task(aliases=['dev-server'])
 def dev_server(ctx, pty=True):
-    """Run django dev server."""
+    """Run django dev server and servers for static files."""
     ctx.run('python manage.py runserver | npm run watch-static', pty=pty)
 
 
@@ -12,6 +12,12 @@ def build(ctx):
     """Build docs, static-files, etc."""
     ctx.run("sphinx-build docs docs/_build")
     ctx.run("npm run build-static")
+
+
+@task
+def storybook(ctx):
+    """Start react storybook server for developing & testing UI components."""
+    ctx.run("npm run storybook")
 
 
 @task
@@ -65,7 +71,7 @@ def clean(ctx, docs=True, bytecode=True, static_files=True, extra=''):
         ctx.run('rm -rf {0}'.format(pattern))
 
 
-@task
+@task(aliases=['graph-models'])
 def graph_models(ctx):
     """Create ./scrappyr-models.pdf file displaying visualization of Django models"""
     ctx.run('python manage.py graph_models -ag -o scrappyr-models.pdf')
