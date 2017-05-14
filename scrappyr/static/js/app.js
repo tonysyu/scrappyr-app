@@ -1,40 +1,53 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
+
+import store from './store';
+import ScrapList from './scraps/components/scrap_list'
+
+import { bindActionCreators } from 'redux';
+import actionCreators, { receiveScraps } from './actions';
 
 
-initializeComponent();
+function mapStateToProps(state) {
+    return {
+        scraps: state.scraps,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(actionCreators, dispatch);
+}
 
 
-class Scrap extends React.Component {
+class Main extends React.Component {
     render() {
-        const { scrap } = this.props;
         return (
-            <div className="scrap">
-                <span className="scrap-title"
-                    dangerouslySetInnerHTML={ {__html: scrap.html_title} }>
-                </span>
-                <button className="edit btn btn-sm btn-secondary">
-                    Edit
-                </button>
+            <div>
+                {React.cloneElement(this.props.children, this.props)}
             </div>
         );
     }
 }
 
+const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 
-class ScrapList extends React.Component {
-    render() {
-        const { scraps } = this.props;
-        return (
-            <section>
-                {scraps.map((scrapItem, i) => <Scrap scrap={scrapItem} key={i}></Scrap>)}
-            </section>
-        );
-    }
-}
+
+render(
+    <Provider store={store}>
+        <App>
+            <ScrapList></ScrapList>
+        </App>
+    </Provider>,
+    document.getElementById('react-scrap-list'),
+)
+
+
+initializeComponent();
 
 async function initializeComponent() {
     const response = await fetch('/api/scraps');
     const scraps = await response.json();
-    render(<ScrapList scraps={scraps}></ScrapList>, document.getElementById('react-scrap-list'))
+    store.dispatch(receiveScraps(scraps));
 }
