@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "scripts": {
     "build-styles": "node-sass --output-style nested --source-map true ./scrappyr/static/sass/main.scss ./scrappyr/static/css/main.css",
+    "watch-styles": "node-sass --watch --output-style nested --source-map true ./scrappyr/static/sass/main.scss ./scrappyr/static/css/main.css",
     "build-js": "./node_modules/.bin/webpack --config webpack.config.js",
-    "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch",
+    "watch-js": "./node_modules/.bin/webpack --config webpack.config.js --watch",
     "build-static": "npm run build-styles && npm run build-js",
+    "watch-static": "npm run watch-styles | npm run watch-js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

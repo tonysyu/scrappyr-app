@@ -68,7 +68,7 @@ def clean(ctx, docs=True, bytecode=True, static_files=True, extra=''):
 @task
 def serve_static(ctx, pty=True):
     """Run webpack server to build static files when files are changed."""
-    ctx.run('npm run watch', pty=pty)
+    ctx.run('npm run watch-static', pty=pty)
 
 
 @task
