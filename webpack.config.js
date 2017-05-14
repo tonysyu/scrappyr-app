@@ -9,6 +9,7 @@ module.exports = {
       path: path.resolve('./scrappyr/static/webpack_bundles/'),
       filename: "[name]-[hash].js"
   },
+  devtool: 'source-map',
   plugins: [
     new BundleTracker({filename: './webpack-stats.json'}),
     new webpack.NoErrorsPlugin()
