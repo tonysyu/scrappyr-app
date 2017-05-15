@@ -2,9 +2,9 @@
   "name": "scrappyr",
   "version": "0.1.0",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/tonysyu/scrappyr-app.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonysyu/scrappyr-app.git"
   },
   "scripts": {
     "build-styles": "node-sass --output-style nested --source-map true ./scrappyr/static/sass/main.scss ./scrappyr/static/css/main.css",
@@ -13,6 +13,8 @@
     "watch-js": "npm run build-js -- --watch",
     "build-static": "npm run build-styles | npm run build-js",
     "watch-static": "npm run watch-styles | npm run watch-js",
+    "test": "./node_modules/.bin/jest",
+    "test-server": "npm test -- --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -33,6 +35,7 @@
     "@kadira/storybook": "^2.21.0",
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.4",
+    "babel-jest": "^20.0.1",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-object-rest-spread": "^6.6.5",
@@ -48,7 +51,7 @@
     "eslint-plugin-react": "^5.0.1",
     "expect": "^1.18.0",
     "expect-jsx": "^2.5.1",
-    "mocha": "^2.4.5",
+    "jest": "^20.0.1",
     "node-sass": "^4.5.2",
     "react-addons-test-utils": "^15.0.2",
     "run-sequence": "^1.2.2",
