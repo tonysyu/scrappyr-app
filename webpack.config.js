@@ -12,13 +12,13 @@ module.exports = {
   devtool: 'source-map',
   plugins: [
     new BundleTracker({filename: './webpack-stats.json'}),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets:['es2015', 'es2017', 'react']
         },
