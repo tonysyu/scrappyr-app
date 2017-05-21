@@ -21,13 +21,20 @@ def storybook(ctx):
 
 
 @task
-def test(ctx, coverage=True, pty=True):
+def test(ctx, coverage=True, backend=True, frontend=True, pty=True):
     """Run automated tests."""
-    test_cmd = 'pytest'
-    test_cmd += ' --cov=scrappyr --cov-report term-missing' if coverage else ''
 
-    print_header('Automated tests')
-    ctx.run(test_cmd, pty=pty)
+    if backend:
+        test_cmd = 'pytest'
+        test_cmd += ' --cov=scrappyr --cov-report term-missing' if coverage else ''
+
+        print_header('Backend tests')
+        ctx.run(test_cmd, pty=pty)
+
+    if frontend:
+
+        print_header('Frontend tests')
+        ctx.run('npm test', pty=pty)
 
 
 @task
