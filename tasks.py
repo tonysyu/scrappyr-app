@@ -21,12 +21,15 @@ def storybook(ctx):
 
 
 @task
-def test(ctx, coverage=True, backend=True, frontend=True, pty=True):
-    """Run automated tests."""
+def test(ctx, coverage=True, backend=True, frontend=True, acceptance=False, pty=True):
+    """Run automated tests.
 
+    By default acceptance tests are not run. Add `--acceptance` flag to include those tests.
+    """
     if backend:
         test_cmd = 'pytest'
         test_cmd += ' --cov=scrappyr --cov-report term-missing' if coverage else ''
+        test_cmd += ' scrappyr'  # Root application directory
 
         print_header('Backend tests')
         ctx.run(test_cmd, pty=pty)
@@ -36,6 +39,10 @@ def test(ctx, coverage=True, backend=True, frontend=True, pty=True):
         print_header('Frontend tests')
         ctx.run('npm test', pty=pty)
 
+    if acceptance:
+        print_header('Acceptance tests')
+        # Skip acceptance test directory if `acceptance` is False.
+        ctx.run('pytest acceptance_tests', pty=pty)
 
 @task
 def check(ctx, pty=True):
