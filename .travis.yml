@@ -11,5 +11,6 @@ python:
   - "3.6"
 install:
   - "pip install -r requirements/test.txt"
+  - "npm install"
 script:
   - invoke test
