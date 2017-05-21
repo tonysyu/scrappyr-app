@@ -6,13 +6,12 @@ scrappyr
      :target: https://travis-ci.org/tonysyu/scrappyr-app
      :alt: Travis CI status badge
 
-
-A simple app for managing scraps of information. This app was created using the `Cookiecutter
-Django`_ template. See `installation instructions`_ for how to setup your development environment.
-
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
      :alt: Built with Cookiecutter Django
+
+A simple app for managing scraps of information. This app was created using the `Cookiecutter
+Django`_ template. See `installation instructions`_ for how to setup your development environment.
 
 
 This is a reimplementation (from scratch) of https://github.com/tonysyu/scrappyr. Instead of
@@ -62,7 +61,7 @@ Invoke commands
 
 [Invoke](http://docs.pyinvoke.org/en/0.11.0/getting_started.html) (a.k.a. pyinvoke) allows you
 to easily create custom commands for general administration of the project. To list available
-commands, run::
+commands, run (or more simply `invoke -l`)::
 
    $ invoke --list
 
@@ -89,7 +88,7 @@ Setting Up Your Users
   verification message. Copy the link into your browser. Now the user's email should be verified
   and ready to go.
 
-* To create an **superuser account**, use this command::
+* To create a **superuser account**, run::
 
     $ python manage.py createsuperuser
 

@@ -44,6 +44,7 @@ def test(ctx, coverage=True, backend=True, frontend=True, acceptance=False, pty=
         # Skip acceptance test directory if `acceptance` is False.
         ctx.run('pytest acceptance_tests', pty=pty)
 
+
 @task
 def check(ctx, pty=True):
     """Run code quality checks."""
