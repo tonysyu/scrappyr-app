@@ -14,9 +14,7 @@
     "build-static": "npm run build-styles | npm run build-js",
     "watch-static": "npm run watch-styles | npm run watch-js",
     "test": "./node_modules/.bin/jest",
-    "test-server": "npm test -- --watch",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test-server": "npm test -- --watch"
   },
   "dependencies": {
     "express": "^4.13.4",
@@ -32,7 +30,6 @@
     "redux": "^3.5.2"
   },
   "devDependencies": {
-    "@kadira/storybook": "^2.21.0",
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.4",
     "babel-jest": "^20.0.1",
