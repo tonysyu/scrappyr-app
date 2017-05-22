@@ -2,11 +2,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import store from './store';
 import ScrapList from './scraps/components/scrap_list'
+import { createReactApp } from './utils/react_utils';
 
-import { bindActionCreators } from 'redux';
 import actionCreators, { receiveScraps } from './actions';
 
 
@@ -16,29 +17,14 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch);
-}
-
-
-class Main extends React.Component {
-    render() {
-        return (
-            <div>
-                {React.cloneElement(this.props.children, this.props)}
-            </div>
-        );
-    }
-}
-
-const App = connect(mapStateToProps, mapDispatchToProps)(Main);
+const ScrapsApp = createReactApp(mapStateToProps, actionCreators);
 
 
 render(
     <Provider store={store}>
-        <App>
+        <ScrapsApp>
             <ScrapList></ScrapList>
-        </App>
+        </ScrapsApp>
     </Provider>,
     document.getElementById('react-scrap-list'),
 )
