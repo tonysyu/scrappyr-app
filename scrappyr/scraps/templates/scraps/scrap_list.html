@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-
   <form class="add-scrap" method="post" action="{% url 'scraps:list' %}">
 
     {% csrf_token %}
@@ -24,5 +23,11 @@
   </form>
 
   <div id="react-scrap-list"></div>
+
+  <script>
+    window.props = {
+      scraps: {{scraps|safe}},
+    };
+  </script>
 
 {% endblock %}

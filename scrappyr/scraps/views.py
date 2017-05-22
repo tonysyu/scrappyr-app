@@ -4,6 +4,7 @@ from django.views.generic import ListView
 
 from .forms import ScrapForm
 from .models import Scrap
+from .serializers import ScrapSerializer
 
 
 class ScrapListView(LoginRequiredMixin, ListView):
@@ -12,6 +13,7 @@ class ScrapListView(LoginRequiredMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['form'] = ScrapForm()
+        context['scraps'] = ScrapSerializer.to_json(Scrap.objects.all())
         return context
 
     def post(self, request):

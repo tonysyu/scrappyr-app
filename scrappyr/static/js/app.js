@@ -44,7 +44,8 @@ render(
 )
 
 
-initializeComponent();
+store.dispatch(receiveScraps(window.props.scraps));
+
 
 async function initializeComponent() {
     const response = await fetch('/api/scraps');

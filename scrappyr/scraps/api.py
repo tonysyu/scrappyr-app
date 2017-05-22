@@ -1,14 +1,9 @@
-from rest_framework import serializers, viewsets
+from rest_framework import viewsets
 
 from . import models
-
-
-class ScrapSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Scrap
-        fields = ('raw_title', 'markup_type', 'html_title')
+from . import serializers
 
 
 class ScrapViewSet(viewsets.ModelViewSet):
     queryset = models.Scrap.objects.all()
-    serializer_class = ScrapSerializer
+    serializer_class = serializers.ScrapSerializer
