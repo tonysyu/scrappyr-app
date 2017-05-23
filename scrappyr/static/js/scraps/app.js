@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import store from './store';
-import ScrapList from './scraps/components/scrap_list'
-import { createReactApp } from './utils/react_utils';
+import ScrapList from './components/scrap_list'
+import { createReactApp } from '../utils/react_utils';
 
 import actionCreators, { receiveScraps } from './actions';
 
