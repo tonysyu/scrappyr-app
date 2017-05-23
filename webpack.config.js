@@ -4,7 +4,9 @@ var BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
   context: __dirname,
-  entry: './scrappyr/static/js/index',
+  entry: {
+    scraps: './scrappyr/static/js/index',
+  },
   output: {
       path: path.resolve('./scrappyr/static/webpack_bundles/'),
       filename: "[name]-[hash].js"

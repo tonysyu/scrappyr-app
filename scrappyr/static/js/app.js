@@ -1,8 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import store from './store';
 import ScrapList from './scraps/components/scrap_list'

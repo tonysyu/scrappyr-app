@@ -2,6 +2,7 @@
 
 {% load crispy_forms_tags %}
 {% load staticfiles i18n %}
+{% load render_bundle from webpack_loader %}
 
 {% block css %}
   {{ block.super }}
@@ -29,5 +30,7 @@
       scraps: {{scraps|safe}},
     };
   </script>
+
+  {% render_bundle 'scraps' %}
 
 {% endblock %}
