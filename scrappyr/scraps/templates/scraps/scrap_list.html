@@ -4,11 +4,6 @@
 {% load staticfiles i18n %}
 {% load render_bundle from webpack_loader %}
 
-{% block css %}
-  {{ block.super }}
-  <link href="{% static 'css/scraps.css' %}" rel="stylesheet">
-{% endblock %}
-
 {% block content %}
   <form class="add-scrap" method="post" action="{% url 'scraps:list' %}">
 
@@ -17,7 +12,7 @@
 
     <div class="control-group">
       <div class="controls">
-        <button type="submit" class="btn">Add Scrap</button>
+        <button type="submit" class="btn btn-sm btn-primary">Add Scrap</button>
       </div>
     </div>
 

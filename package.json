@@ -51,6 +51,7 @@
     "jest": "^20.0.1",
     "node-sass": "^4.5.2",
     "react-addons-test-utils": "^15.0.2",
+    "react-modal": "^1.7.7",
     "run-sequence": "^1.2.2",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.17.0",

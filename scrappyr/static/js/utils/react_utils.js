@@ -1,26 +1,24 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
 
-class Main extends React.Component {
-  render() {
-    return (
-      <div>
-        {React.cloneElement(this.props.children, this.props)}
-      </div>
-      );
-  }
-}
-
-
-export function createReactApp(mapStateToProps, actionCreators) {
-
+export function connectToApp(mapStateToProps, actionCreators, App) {
   function mapDispatchToProps(dispatch) {
       return bindActionCreators(actionCreators, dispatch);
   }
-  const app = connect(mapStateToProps, mapDispatchToProps)(Main);
-
-  return app;
+  return connect(mapStateToProps, mapDispatchToProps)(App);
 }
+
+
+export function createReactReduxApp(App, store, mapStateToProps, actionCreators) {
+  const ReactReduxApp = connectToApp(mapStateToProps, actionCreators, App);
+  return (
+    <Provider store={store}>
+      <ReactReduxApp/>
+    </Provider>
+  );
+}
+

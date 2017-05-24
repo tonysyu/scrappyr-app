@@ -13,12 +13,9 @@ div.scrap {
   border: 1px solid lightgray;
 }
 
-div.scrap > h1 {
-  font-size: 1em;
-}
-
-div.scrap > span.scrap-title > h1 {
-  font-size: 1em;
+div.scrap > h1, div.scrap > span.scrap-title > h1 {
+  font-size: 0.8em;
+  font-weight: 400;
 }
 
 div.scrap > button.edit {

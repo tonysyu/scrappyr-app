@@ -1,12 +1,18 @@
 export function receiveScraps(scraps) {
-    return {
-        type: 'RECEIVE_SCRAPS',
-        scraps: scraps,
-    };
+  return {
+    type: 'RECEIVE_SCRAPS',
+    scraps: scraps,
+  };
 }
 
-const actionCreators = [
-    receiveScraps,
-];
+export function openEditor() {
+  return {
+    type: 'OPEN_EDITOR',
+  };
+}
 
-export default actionCreators;
+export function closeEditor() {
+  return {
+    type: 'CLOSE_EDITOR',
+  };
+}

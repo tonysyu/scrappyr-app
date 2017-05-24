@@ -3,7 +3,8 @@ import { createStore, compose } from 'redux';
 import rootReducer from './reducers/index';
 
 const defaultState = {
-    scraps: [],
+  app: {isEditorOpen: false},  
+  scraps: [],
 }
 
 const enhancers = compose(
