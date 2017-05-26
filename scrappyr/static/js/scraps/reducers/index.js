@@ -11,19 +11,29 @@ function scraps(state = [], action) {
   }
 }
 
-function app(state = [], action) {
+function scrapEditor(state = [], action) {
   switch (action.type) {
     case 'OPEN_EDITOR':
-      return {...state, isEditorOpen: true};
+      return {
+        ...state,
+        isOpen: true,
+        scrap: action.scrap,
+        index: action.index,
+      };
     case 'CLOSE_EDITOR':
-      return {...state, isEditorOpen: false};
+      return {
+        ...state,
+        isOpen: false,
+        scrap: action.scrap,
+        index: action.index,
+      };
     default:
       return state;
   }
 }
 
 const rootReducer = combineReducers({
-  app,
+  scrapEditor,
   scraps,
   routing: routerReducer,
 });

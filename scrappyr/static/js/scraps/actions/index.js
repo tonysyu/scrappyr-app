@@ -5,14 +5,18 @@ export function receiveScraps(scraps) {
   };
 }
 
-export function openEditor() {
+export function openScrapEditor(scrap, index) {
   return {
     type: 'OPEN_EDITOR',
+    scrap: scrap,
+    index: index,
   };
 }
 
-export function closeEditor() {
+export function closeScrapEditor(scrap, index) {
   return {
     type: 'CLOSE_EDITOR',
+    scrap: scrap,
+    index: index,
   };
 }

@@ -3,7 +3,10 @@ import { createStore, compose } from 'redux';
 import rootReducer from './reducers/index';
 
 const defaultState = {
-  app: {isEditorOpen: false},  
+  scrapEditor: {
+    isOpen: false,
+    scrap: null,
+  },
   scraps: [],
 }
 

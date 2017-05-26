@@ -8,14 +8,14 @@ class ScrapList extends React.Component {
     const { scraps } = this.props;
     return (
       <section>
-        {scraps.map((scrapItem, i) => this._renderScrap(scrapItem, i))}
+        {scraps.map((scrapItem, index) => this._renderScrap(scrapItem, index))}
       </section>
     );
   }
 
-  _renderScrap(scrap, i) {
+  _renderScrap(scrap, index) {
     return (
-      <Scrap scrap={scrap} key={i} i={i} {...this.props} />
+      <Scrap scrap={scrap} key={index} index={index} {...this.props} />
     );
   }
 }
