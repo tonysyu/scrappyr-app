@@ -37,7 +37,10 @@ export default class ScrapEditor extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { scrap, index } = this.props.scrapEditor;
-    const title = this.refs.title.value;
+    this.props.updateScrap({
+      ...scrap,
+      raw_title: this.refs.title.value,
+    });
     this.refs.scrapForm.reset();
     this.close();
   }

@@ -5,6 +5,20 @@ export function receiveScraps(scraps) {
   };
 }
 
+export function receiveSingleScrap(scrap) {
+  return {
+    type: 'RECEIVE_SINGLE_SCRAP',
+    scrap: scrap,
+  };
+}
+
+export function updateScrap(scrap) {
+  return {
+    type: 'UPDATE_SCRAP',
+    scrap: scrap,
+  };
+}
+
 export function openScrapEditor(scrap, index) {
   return {
     type: 'OPEN_EDITOR',
