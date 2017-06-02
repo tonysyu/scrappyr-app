@@ -19,6 +19,22 @@ export function updateScrap(scrap) {
   };
 }
 
+// Delete scrap permanently.
+export function deleteScrap(scrap) {
+  return {
+    type: 'DELETE_SCRAP',
+    scrap: scrap,
+  };
+}
+
+// Remove scrap from scraps list.
+export function removeScrap(scrap) {
+  return {
+    type: 'REMOVE_SCRAP',
+    scrap: scrap,
+  };
+}
+
 export function openScrapEditor(scrap, index) {
   return {
     type: 'OPEN_EDITOR',

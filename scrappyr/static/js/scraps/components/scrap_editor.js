@@ -2,11 +2,6 @@ import React from 'react';
 
 export default class ScrapEditor extends React.Component {
 
-  close() {
-    const { scrap, index } = this.props.scrapEditor;
-    this.props.closeScrapEditor(scrap, index);
-  }
-
   render() {
     const { isOpen, scrap, index } = this.props.scrapEditor;
     const scrapTitle = scrap ? scrap.raw_title : '';
@@ -25,8 +20,9 @@ export default class ScrapEditor extends React.Component {
           </div>
           <div className="control-group">
             <div className="controls">
-              <input type="submit" className="btn btn-primary btn-sm" />
+              <input type="submit" className="btn btn-primary btn-sm" value="Update"/>
               <button className="btn btn-sm" onClick={this.close.bind(this)}>Cancel</button>
+              <button type="button" className="btn btn-sm btn-danger" onClick={this.deleteScrap.bind(this)}>Delete</button>
             </div>
           </div>
         </form>
@@ -42,6 +38,17 @@ export default class ScrapEditor extends React.Component {
       raw_title: this.refs.title.value,
     });
     this.refs.scrapForm.reset();
+    this.close();
+  }
+
+  close() {
+    const { scrap, index } = this.props.scrapEditor;
+    this.props.closeScrapEditor(scrap, index);
+  }
+
+  deleteScrap() {
+    const { scrap, index } = this.props.scrapEditor;
+    this.props.deleteScrap(scrap);
     this.close();
   }
 }

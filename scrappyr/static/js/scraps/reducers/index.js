@@ -17,6 +17,8 @@ function scraps(state = [], action) {
         action.scrap,
         ...state.slice(i+1),
       ];
+    case 'REMOVE_SCRAP':
+      return state.filter(s => s.id !== action.scrap.id);
     default:
       return state;
   }
@@ -41,6 +43,9 @@ function scrapEditor(state = [], action) {
     case 'UPDATE_SCRAP':
       updateScrap(action.scrap);
       return state;
+    case 'DELETE_SCRAP':
+      deleteScrap(action.scrap);
+      return state;
     default:
       return state;
   }
@@ -62,6 +67,24 @@ async function updateScrap(scrap) {
   );
   const newScrap = await response.json();
   store.dispatch(actionCreators.receiveSingleScrap(newScrap));
+}
+
+async function deleteScrap(scrap) {
+  const response = await fetch(
+    `/api/scraps/${scrap.id}/`,
+    {
+      method: 'delete',
+      credentials: 'include',
+      body: JSON.stringify(scrap),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken'),
+      },
+    },
+  );
+  if (response.ok) {
+    store.dispatch(actionCreators.removeScrap(scrap));
+  }
 }
 
 const rootReducer = combineReducers({
