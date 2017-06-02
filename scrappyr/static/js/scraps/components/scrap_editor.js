@@ -15,18 +15,18 @@ export default class ScrapEditor extends React.Component {
         <h4>Edit Scrap</h4>
         <form ref="scrapForm" className="scrap-form" onSubmit={this.handleSubmit.bind(this)}>
           <div className="form-group">
-            <label htmlFor="title" className="form-control-label  requiredField">Title: </label>
+            <label htmlFor="title" className="form-control-label requiredField">Title:</label>
             <input
               name="title"
               ref="title"
               type="text"
-              className="textinput textInput form-control"
+              className="form-control"
               defaultValue={scrapTitle} />
           </div>
           <div className="control-group">
             <div className="controls">
-              <input type="submit" className="btn btn-primary" />
-              <button className="btn" onClick={this.close.bind(this)}>Cancel</button>
+              <input type="submit" className="btn btn-primary btn-sm" />
+              <button className="btn btn-sm" onClick={this.close.bind(this)}>Cancel</button>
             </div>
           </div>
         </form>

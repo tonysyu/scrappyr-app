@@ -1,11 +1,16 @@
 import React from 'react';
 
 import Scrap from './scrap'
+import { compareDateStrings } from '../../utils/data_utils'
 
 
 class ScrapList extends React.Component {
   render() {
     const { scraps } = this.props;
+
+    // Technically this violates redux, since this sorts in-place and mutates data.
+    scraps.sort((a, b) => compareDateStrings(a.modified, b.modified));
+
     return (
       <section>
         {scraps.map((scrapItem, index) => this._renderScrap(scrapItem, index))}
