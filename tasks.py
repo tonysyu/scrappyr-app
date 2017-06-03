@@ -55,7 +55,7 @@ def check(ctx, pty=True):
     ctx.run('flake8', pty=pty)
 
     print_header('eslint')
-    ctx.run('./node_modules/.bin/eslint -c eslintrc  scrappyr/static/js/**', pty=pty)
+    ctx.run('./node_modules/.bin/eslint -c .eslintrc  scrappyr/static/js/**', pty=pty)
 
 
 @task
