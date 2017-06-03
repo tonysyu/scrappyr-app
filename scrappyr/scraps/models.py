@@ -19,8 +19,8 @@ class Scrap(TimeStampedModel):
 
     @cached_property
     def html_title(self):
-        convert = markup.html_renderer_for(self.markup_type)
-        return convert('#' + self.raw_title)
+        convert = markup.html_inline_renderer_for(self.markup_type)
+        return convert(self.raw_title)
 
     def __str__(self):
         return self.raw_title

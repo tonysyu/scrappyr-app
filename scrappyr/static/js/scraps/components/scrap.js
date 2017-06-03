@@ -1,21 +1,22 @@
 import React from 'react';
+import { Card, CardTitle, Button } from 'reactstrap';
 
 
 class Scrap extends React.Component {
   render() {
     const { scrap, index } = this.props;
     return (
-      <div className="scrap">
-        <span className="scrap-title"
+      <Card className="scrap">
+        <CardTitle className="scrap-title"
           dangerouslySetInnerHTML={ {__html: scrap.html_title} }>
-        </span>
-        <button className="edit btn btn-sm btn-secondary"
-                onClick={this.props.openScrapEditor.bind(this, scrap, index)}>
+        </CardTitle>
+        <Button className="edit btn-sm btn-secondary"
+          onClick={this.props.openScrapEditor.bind(this, scrap, index)}>
           Edit
-        </button>
-      </div>
-      );
-        }
+        </Button>
+      </Card>
+    );
   }
+}
 
-  export default Scrap;
+export default Scrap;

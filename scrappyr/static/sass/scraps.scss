@@ -11,20 +11,21 @@ div.scrap {
   margin: 10px 5px;
   padding: 10px 10px 5px 10px;
   border: 1px solid lightgray;
-}
 
-div.scrap > h1, div.scrap > span.scrap-title > h1 {
-  font-size: 0.8em;
-  font-weight: 400;
-}
+  h4.card-title {
+    font-size: 0.8em;
+    font-weight: 400;
+    margin-bottom: .5rem;
+  }
 
-div.scrap > button.edit {
-  display: none;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-}
+  button.edit {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
 
-div.scrap:hover > button.edit {
-  display: block;
+  &:hover > button.edit {
+    display: block;
+  }
 }
