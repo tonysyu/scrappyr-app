@@ -65,7 +65,7 @@ def createapp(ctx, app):
 
 
 @task
-def clean(ctx, docs=True, bytecode=True, static_files=True, extra=''):
+def clean(ctx, docs=True, bytecode=True, static_files=True, node_modules=True, extra=''):
     """Remove build files.
 
     This command removes:
@@ -80,6 +80,8 @@ def clean(ctx, docs=True, bytecode=True, static_files=True, extra=''):
         patterns.append('`find . -name __pycache__ -type d`')
     if static_files:
         patterns.append('scrappyr/static/webpack_bundles/')
+    if node_modules:
+        patterns.append('node_modules/*')
     if extra:
         patterns.append(extra)
     for pattern in patterns:
