@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button, ButtonGroup, Input } from 'reactstrap';
+
 
 export default class ScrapEditor extends React.Component {
 
@@ -18,12 +20,12 @@ export default class ScrapEditor extends React.Component {
               className="form-control"
               defaultValue={scrapTitle} />
           </div>
-          <div className="control-group">
-            <div className="controls">
+          <div className="controls">
+            <ButtonGroup>
               <input type="submit" className="btn btn-primary btn-sm" value="Update"/>
-              <button className="btn btn-sm" onClick={this.close.bind(this)}>Cancel</button>
-              <button type="button" className="btn btn-sm btn-danger" onClick={this.deleteScrap.bind(this)}>Delete</button>
-            </div>
+              <Button className="btn btn-sm" onClick={this.close.bind(this)}>Cancel</Button>
+              <Button type="button" className="btn btn-sm btn-danger" onClick={this.deleteScrap.bind(this)}>Delete</Button>
+            </ButtonGroup>
           </div>
         </form>
       </div>
