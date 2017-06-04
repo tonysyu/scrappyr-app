@@ -1,8 +1,15 @@
 import React from 'react';
-import { Button, ButtonGroup, Input } from 'reactstrap';
+import { Button, ButtonDropdown, ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, Input } from 'reactstrap';
 
 
 export default class ScrapEditor extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      moreActionsDropdownOpen: false,
+    };
+  }
 
   render() {
     const { isOpen, scrap, index } = this.props.scrapEditor;
@@ -20,14 +27,29 @@ export default class ScrapEditor extends React.Component {
               className="form-control"
               defaultValue={scrapTitle} />
           </div>
-          <div className="controls">
-            <ButtonGroup>
-              <input type="submit" className="btn btn-primary btn-sm" value="Update"/>
-              <Button className="btn btn-sm" onClick={this.close.bind(this)}>Cancel</Button>
-              <Button type="button" className="btn btn-sm btn-danger" onClick={this.deleteScrap.bind(this)}>Delete</Button>
-            </ButtonGroup>
-          </div>
+          {this.renderControls()}
         </form>
+        <Button className="btn btn-sm close" onClick={this.close.bind(this)}>&times;</Button>
+      </div>
+    );
+  }
+
+  renderControls() {
+    return (
+      <div className="controls">
+        <ButtonGroup>
+          <input type="submit" className="btn btn-primary" value="Update"/>
+          <ButtonDropdown
+            isOpen={this.state.toggleMoreActionsDropdown}
+            toggle={this.toggleMoreActionsDropdown.bind(this)}>
+            <DropdownToggle caret>
+              More
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem onClick={this.deleteScrap.bind(this)}>Delete</DropdownItem>
+            </DropdownMenu>
+          </ButtonDropdown>
+        </ButtonGroup>
       </div>
     );
   }
@@ -46,6 +68,12 @@ export default class ScrapEditor extends React.Component {
   close() {
     const { scrap, index } = this.props.scrapEditor;
     this.props.closeScrapEditor(scrap, index);
+  }
+
+  toggleMoreActionsDropdown() {
+    this.setState({
+      dropdownOpen: !this.state.moreActionsDropdownOpen,
+    });
   }
 
   deleteScrap() {
