@@ -5,18 +5,10 @@
 {% load render_bundle from webpack_loader %}
 
 {% block content %}
-  <form class="add-scrap" method="post" action="{% url 'scraps:list' %}">
 
-    {% csrf_token %}
-    {{ form|crispy }}
-
-    <div class="control-group">
-      <div class="controls">
-        <button type="submit" class="btn btn-sm btn-primary">Add Scrap</button>
-      </div>
-    </div>
-
-  </form>
+  <div class="clearfix">
+    {% crispy form %}
+  </div>
 
   <div id="react-scrap-list"></div>
 

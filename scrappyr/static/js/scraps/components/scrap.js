@@ -6,7 +6,7 @@ class Scrap extends React.Component {
   render() {
     const { scrap, index } = this.props;
     return (
-      <Card className="scrap">
+      <Card className="scrap col-md-4">
         <CardTitle className="scrap-title"
           dangerouslySetInnerHTML={ {__html: scrap.html_title} }>
         </CardTitle>
