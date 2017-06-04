@@ -37,8 +37,8 @@ function scrapEditor(state = [], action) {
       return {
         ...state,
         isOpen: false,
-        scrap: action.scrap,
-        index: action.index,
+        scrap: null,
+        index: null,
       };
     case 'UPDATE_SCRAP':
       updateScrap(action.scrap);

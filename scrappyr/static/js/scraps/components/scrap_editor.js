@@ -66,8 +66,7 @@ export default class ScrapEditor extends React.Component {
   }
 
   close() {
-    const { scrap, index } = this.props.scrapEditor;
-    this.props.closeScrapEditor(scrap, index);
+    this.props.closeScrapEditor();
   }
 
   toggleMoreActionsDropdown() {

@@ -43,10 +43,8 @@ export function openScrapEditor(scrap, index) {
   };
 }
 
-export function closeScrapEditor(scrap, index) {
+export function closeScrapEditor() {
   return {
     type: 'CLOSE_EDITOR',
-    scrap: scrap,
-    index: index,
   };
 }
