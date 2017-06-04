@@ -11,4 +11,8 @@ class TestScrap(TestCase):
 
     def test_html_title(self):
         scrap = Scrap(raw_title='hello')
-        assert scrap.html_title == '<h1>hello</h1>'
+        assert scrap.html_title == 'hello'
+
+    def test_html_title_bold(self):
+        scrap = Scrap(raw_title='**hello**')
+        assert scrap.html_title == '<strong>hello</strong>'

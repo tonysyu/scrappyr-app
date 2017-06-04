@@ -8,8 +8,7 @@ class Scrap extends React.Component {
     return (
       <Card className="scrap col-md-4">
         <CardBlock>
-          <CardTitle className="scrap-title"
-            dangerouslySetInnerHTML={ {__html: scrap.html_title} }>
+          <CardTitle dangerouslySetInnerHTML={ {__html: scrap.html_title} }>
           </CardTitle>
           <Button className="edit btn-sm btn-secondary"
             onClick={this.props.openScrapEditor.bind(this, scrap, index)}>
