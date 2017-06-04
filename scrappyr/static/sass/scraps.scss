@@ -4,9 +4,25 @@ form.add-scrap {
 
 div.scrap {
   position: relative;
-  margin: 10px 5px;
-  padding: 10px 10px 5px 10px;
-  border: 1px solid lightgray;
+  padding: .3em;
+  margin-bottom: 0;
+  border: 0;
+
+  .card-block {
+    padding: 0.5em;
+    border: 1px solid lightgray;
+
+    button.edit {
+      display: none;
+      position: absolute;
+      right: 0.5em;
+      top: 0.5em;
+    }
+
+    &:hover button.edit {
+      display: block;
+    }
+  }
 
   h4.card-title {
     font-size: 0.8em;
@@ -14,14 +30,4 @@ div.scrap {
     margin-bottom: .5rem;
   }
 
-  button.edit {
-    display: none;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-  }
-
-  &:hover > button.edit {
-    display: block;
-  }
 }
