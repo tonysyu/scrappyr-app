@@ -1,3 +1,5 @@
+from glob import glob
+
 from invoke import task
 
 
@@ -55,7 +57,8 @@ def check(ctx, pty=True):
     ctx.run('flake8', pty=pty)
 
     print_header('eslint')
-    ctx.run('./node_modules/.bin/eslint -c .eslintrc  scrappyr/static/js/**', pty=pty)
+    js_files = ' '.join(glob('scrappyr/static/js/**/*.js', recursive=True))
+    ctx.run(f'./node_modules/.bin/eslint -c .eslintrc {js_files}', pty=pty)
 
 
 @task
