@@ -13,8 +13,8 @@
     "watch-js": "npm run build-js -- --watch",
     "build-static": "npm run build-styles | npm run build-js",
     "watch-static": "npm run watch-styles | npm run watch-js",
-    "test": "./node_modules/.bin/jest",
-    "test-server": "npm test -- --watch"
+    "test": "./node_modules/.bin/jest --coverage",
+    "test-server": "npm test -- --watch --coverage"
   },
   "dependencies": {
     "express": "^4.13.4",

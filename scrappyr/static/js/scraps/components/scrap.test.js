@@ -6,17 +6,23 @@ import ReactTestUtils from 'react-dom/test-utils';
 import Scrap from './scrap';
 
 
-function helloWorld() {
-  return 'Hello world!';
-}
-
 test('render title', function () {
-  const scrap = {html_title: "Hello"};
-  const component = ReactTestUtils.renderIntoDocument(
-    <Scrap scrap={scrap} openScrapEditor={() => {}} />
-  );
-  const title = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'h4')
-
+  const title = getScrapTitleElement({html_title: 'Hello'});
   expect(title.className).toBe('card-title');
   expect(title.innerHTML).toBe('Hello')
 });
+
+
+test('render title with html', function () {
+  const title = getScrapTitleElement({html_title: '<b>Hello</b>'});
+  expect(title.className).toBe('card-title');
+  expect(title.innerHTML).toBe('<b>Hello</b>')
+});
+
+
+function getScrapTitleElement(scrap) {
+  const component = ReactTestUtils.renderIntoDocument(
+    <Scrap scrap={scrap} openScrapEditor={() => {}} />
+  );
+  return ReactTestUtils.findRenderedDOMComponentWithTag(component, 'h4')
+}
