@@ -5,8 +5,14 @@ from invoke import task
 
 @task(aliases=['dev-server'])
 def dev_server(ctx, pty=True):
-    """Run django dev server and servers for static files."""
-    ctx.run('python manage.py runserver | npm run watch-static', pty=pty)
+    """Run django dev server."""
+    ctx.run('python manage.py runserver', pty=pty)
+
+
+@task(aliases=['static-server'])
+def static_server(ctx, pty=True):
+    """Run servers for static files."""
+    ctx.run('npm run watch-static', pty=pty)
 
 
 @task
