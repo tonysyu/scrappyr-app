@@ -10,8 +10,20 @@ test('scrap title', function () {
 });
 
 
-function getScrapEditor(scrap) {
-  const props = { scrapEditor: { scrap } };
+test('submit', function () {
+  const updateScrap = jest.fn();
+  const closeScrapEditor = jest.fn();
+  const editor = getScrapEditor({raw_title: '*Hello*'}, { closeScrapEditor, updateScrap });
+
+  editor.handleSubmit({ preventDefault: () => {} });
+
+  expect(updateScrap.mock.calls.length).toBe(1)
+  expect(closeScrapEditor.mock.calls.length).toBe(1)
+});
+
+
+function getScrapEditor(scrap, additionalProps = {}) {
+  const props = { scrapEditor: { scrap }, ...additionalProps };
   const component = ReactTestUtils.renderIntoDocument(
     <ScrapEditor {...props} />
   );
