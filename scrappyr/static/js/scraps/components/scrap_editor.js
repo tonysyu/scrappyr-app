@@ -16,7 +16,7 @@ export default class ScrapEditor extends React.Component {
     const { scrap } = this.props.scrapEditor;
     const scrapTitle = scrap ? scrap.raw_title : '';
     return (
-      <div className="scrap-editor">
+      <div id="scrap-editor">
         <h4>Edit Scrap</h4>
         <form ref="scrapForm" className="scrap-form" onSubmit={this.handleSubmit.bind(this)}>
           <div className="form-group">
