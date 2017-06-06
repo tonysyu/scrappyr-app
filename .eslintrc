@@ -1,14 +1,24 @@
 {
-    "plugins": [
-        "babel",
-        "react"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 2017,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true,
-            "experimentalObjectRestSpread": true,
-        }
-    }
+  "env": {
+    "browser": true,
+    "jest": true,
+  },
+  "plugins": [
+    "babel",
+    "react",
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true,
+    },
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "react/jsx-uses-vars": 2,
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "max-len": ["error", 99],
+  },
 }

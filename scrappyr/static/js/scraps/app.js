@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { render } from 'react-dom';
 import Modal from 'react-modal';
 
@@ -19,8 +19,7 @@ function mapStateToProps(state) {
 class App extends React.Component {
 
   render() {
-    const { isOpen, scrap, index } = this.props.scrapEditor;
-    const scrapTitle = scrap ? scrap.raw_title : '';
+    const { isOpen } = this.props.scrapEditor;
     return (
       <div>
         <ScrapList {...this.props}/>

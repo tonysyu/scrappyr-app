@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, ButtonDropdown, ButtonGroup, DropdownItem, DropdownMenu, DropdownToggle, Input } from 'reactstrap';
+import { Button, ButtonDropdown, ButtonGroup } from 'reactstrap';
+import { DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 
 
 export default class ScrapEditor extends React.Component {
@@ -12,7 +13,7 @@ export default class ScrapEditor extends React.Component {
   }
 
   render() {
-    const { isOpen, scrap, index } = this.props.scrapEditor;
+    const { scrap } = this.props.scrapEditor;
     const scrapTitle = scrap ? scrap.raw_title : '';
     return (
       <div className="scrap-editor">
@@ -56,7 +57,7 @@ export default class ScrapEditor extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { scrap, index } = this.props.scrapEditor;
+    const { scrap } = this.props.scrapEditor;
     this.props.updateScrap({
       ...scrap,
       raw_title: this.refs.title.value,
@@ -76,7 +77,7 @@ export default class ScrapEditor extends React.Component {
   }
 
   deleteScrap() {
-    const { scrap, index } = this.props.scrapEditor;
+    const { scrap } = this.props.scrapEditor;
     this.props.deleteScrap(scrap);
     this.close();
   }

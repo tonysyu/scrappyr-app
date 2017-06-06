@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 
@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 
 export function connectToApp(mapStateToProps, actionCreators, App) {
   function mapDispatchToProps(dispatch) {
-      return bindActionCreators(actionCreators, dispatch);
+    return bindActionCreators(actionCreators, dispatch);
   }
   return connect(mapStateToProps, mapDispatchToProps)(App);
 }

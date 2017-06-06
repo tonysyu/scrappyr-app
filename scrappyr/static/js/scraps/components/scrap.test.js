@@ -1,6 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
+import React from 'react'; // eslint-disable-line no-unused-vars
 import ReactTestUtils from 'react-dom/test-utils';
 
 import Scrap from './scrap';
