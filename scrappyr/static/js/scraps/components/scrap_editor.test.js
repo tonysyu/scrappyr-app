@@ -24,6 +24,18 @@ test('handleSubmit', function () {
 });
 
 
+test('handleSubmit with updated title', function () {
+  const scrap = { raw_title: 'original-title' };
+  const updateScrap = jest.fn();
+  const editor = getScrapEditor(scrap, { updateScrap, closeScrapEditor: jest.fn() });
+
+  editor.refs.title.value = 'new-title';
+  editor.handleSubmit({ preventDefault: () => {} });
+
+  expect(updateScrap.mock.calls[0][0]).toEqual({ raw_title: 'new-title' })
+});
+
+
 test('deleteScrap', function () {
   const scrap = { id: 42 };
   const deleteScrap = jest.fn();
