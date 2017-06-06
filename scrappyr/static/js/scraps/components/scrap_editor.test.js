@@ -13,11 +13,23 @@ test('scrap title', function () {
 test('submit', function () {
   const updateScrap = jest.fn();
   const closeScrapEditor = jest.fn();
-  const editor = getScrapEditor({raw_title: '*Hello*'}, { closeScrapEditor, updateScrap });
+  const editor = getScrapEditor({raw_title: '*Hello*'}, { updateScrap, closeScrapEditor });
 
   editor.handleSubmit({ preventDefault: () => {} });
 
   expect(updateScrap.mock.calls.length).toBe(1)
+  expect(closeScrapEditor.mock.calls.length).toBe(1)
+});
+
+
+test('delete', function () {
+  const deleteScrap = jest.fn();
+  const closeScrapEditor = jest.fn();
+  const editor = getScrapEditor({raw_title: '*Hello*'}, { deleteScrap, closeScrapEditor });
+
+  editor.deleteScrap();
+
+  expect(deleteScrap.mock.calls.length).toBe(1)
   expect(closeScrapEditor.mock.calls.length).toBe(1)
 });
 
