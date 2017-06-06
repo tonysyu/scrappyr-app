@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Scrap from './scrap'
-import { compareDateStrings } from '../../utils/data_utils'
+import Scrap from './scrap';
+import { compareDateStrings } from '../../utils/data_utils';
 
 
 class ScrapList extends React.Component {

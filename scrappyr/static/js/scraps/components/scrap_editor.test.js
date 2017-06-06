@@ -6,7 +6,7 @@ import ScrapEditor from './scrap_editor';
 
 test('scrap title', function () {
   const editor = getScrapEditor({raw_title: '*Hello*'});
-  expect(editor.refs.title.value).toBe('*Hello*')
+  expect(editor.refs.title.value).toBe('*Hello*');
 });
 
 
@@ -18,9 +18,9 @@ test('handleSubmit', function () {
 
   editor.handleSubmit({ preventDefault: () => {} });
 
-  expect(updateScrap.mock.calls.length).toBe(1)
-  expect(updateScrap.mock.calls[0][0]).toEqual(scrap)
-  expect(closeScrapEditor.mock.calls.length).toBe(1)
+  expect(updateScrap.mock.calls.length).toBe(1);
+  expect(updateScrap.mock.calls[0][0]).toEqual(scrap);
+  expect(closeScrapEditor.mock.calls.length).toBe(1);
 });
 
 
@@ -32,7 +32,7 @@ test('handleSubmit with updated title', function () {
   editor.refs.title.value = 'new-title';
   editor.handleSubmit({ preventDefault: () => {} });
 
-  expect(updateScrap.mock.calls[0][0]).toEqual({ raw_title: 'new-title' })
+  expect(updateScrap.mock.calls[0][0]).toEqual({ raw_title: 'new-title' });
 });
 
 
@@ -44,9 +44,9 @@ test('deleteScrap', function () {
 
   editor.deleteScrap();
 
-  expect(deleteScrap.mock.calls.length).toBe(1)
-  expect(deleteScrap.mock.calls[0][0]).toEqual(scrap)
-  expect(closeScrapEditor.mock.calls.length).toBe(1)
+  expect(deleteScrap.mock.calls.length).toBe(1);
+  expect(deleteScrap.mock.calls[0][0]).toEqual(scrap);
+  expect(closeScrapEditor.mock.calls.length).toBe(1);
 });
 
 

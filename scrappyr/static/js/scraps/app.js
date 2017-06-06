@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import Modal from 'react-modal';
 
 import store from './store';
-import ScrapList from './components/scrap_list'
-import ScrapEditor from './components/scrap_editor'
+import ScrapList from './components/scrap_list';
+import ScrapEditor from './components/scrap_editor';
 import { createReactReduxApp } from '../utils/react_utils';
 import * as actionCreators from './actions';
 
@@ -33,4 +33,4 @@ class App extends React.Component {
 
 store.dispatch(actionCreators.receiveScraps(window.props.scraps));
 const reactReduxApp = createReactReduxApp(App, store, mapStateToProps, actionCreators);
-render(reactReduxApp, document.getElementById('react-scrap-list'))
+render(reactReduxApp, document.getElementById('react-scrap-list'));

@@ -8,7 +8,7 @@ const defaultState = {
     scrap: null,
   },
   scraps: [],
-}
+};
 
 const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
