@@ -10,7 +10,7 @@ test('scrap title', function () {
 });
 
 
-test('submit', function () {
+test('handleSubmit', function () {
   const updateScrap = jest.fn();
   const closeScrapEditor = jest.fn();
   const editor = getScrapEditor({raw_title: '*Hello*'}, { updateScrap, closeScrapEditor });
@@ -22,7 +22,7 @@ test('submit', function () {
 });
 
 
-test('delete', function () {
+test('deleteScrap', function () {
   const deleteScrap = jest.fn();
   const closeScrapEditor = jest.fn();
   const editor = getScrapEditor({raw_title: '*Hello*'}, { deleteScrap, closeScrapEditor });
@@ -34,11 +34,22 @@ test('delete', function () {
 });
 
 
+test('toggleMoreActionsDropdown', function () {
+  const editor = getScrapEditor({raw_title: '*Hello*'});
+  expect(editor.state.moreActionsDropdownOpen).toBe(false);
+
+  editor.toggleMoreActionsDropdown();
+  expect(editor.state.moreActionsDropdownOpen).toBe(true);
+
+  editor.toggleMoreActionsDropdown();
+  expect(editor.state.moreActionsDropdownOpen).toBe(false);
+});
+
+
 function getScrapEditor(scrap, additionalProps = {}) {
   const props = { scrapEditor: { scrap }, ...additionalProps };
   const component = ReactTestUtils.renderIntoDocument(
     <ScrapEditor {...props} />
   );
-  // return ReactTestAdditions.find(component, '#scrap-editor')[0];
   return component;
 }

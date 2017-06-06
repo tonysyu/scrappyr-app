@@ -41,7 +41,7 @@ export default class ScrapEditor extends React.Component {
         <ButtonGroup>
           <input type="submit" className="btn btn-primary" value="Update"/>
           <ButtonDropdown
-            isOpen={this.state.toggleMoreActionsDropdown}
+            isOpen={this.state.moreActionsDropdownOpen}
             toggle={this.toggleMoreActionsDropdown.bind(this)}>
             <DropdownToggle caret>
               More
@@ -72,7 +72,7 @@ export default class ScrapEditor extends React.Component {
 
   toggleMoreActionsDropdown() {
     this.setState({
-      dropdownOpen: !this.state.moreActionsDropdownOpen,
+      moreActionsDropdownOpen: !this.state.moreActionsDropdownOpen,
     });
   }
 
