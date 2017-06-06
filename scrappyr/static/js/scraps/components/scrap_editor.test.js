@@ -13,7 +13,7 @@ test('scrap title', function () {
 test('handleSubmit', function () {
   const updateScrap = jest.fn();
   const closeScrapEditor = jest.fn();
-  const editor = getScrapEditor({raw_title: '*Hello*'}, { updateScrap, closeScrapEditor });
+  const editor = getScrapEditor({}, { updateScrap, closeScrapEditor });
 
   editor.handleSubmit({ preventDefault: () => {} });
 
@@ -25,7 +25,7 @@ test('handleSubmit', function () {
 test('deleteScrap', function () {
   const deleteScrap = jest.fn();
   const closeScrapEditor = jest.fn();
-  const editor = getScrapEditor({raw_title: '*Hello*'}, { deleteScrap, closeScrapEditor });
+  const editor = getScrapEditor({}, { deleteScrap, closeScrapEditor });
 
   editor.deleteScrap();
 
@@ -35,7 +35,7 @@ test('deleteScrap', function () {
 
 
 test('toggleMoreActionsDropdown', function () {
-  const editor = getScrapEditor({raw_title: '*Hello*'});
+  const editor = getScrapEditor();
   expect(editor.state.moreActionsDropdownOpen).toBe(false);
 
   editor.toggleMoreActionsDropdown();
