@@ -53,6 +53,8 @@ function scrapEditor(state = [], action) {
 }
 
 
+// FIXME: Refactor updateScrap and deleteScrap to remove duplication
+
 async function updateScrap(scrap) {
   const response = await fetch(
     `/api/scraps/${scrap.id}/`,
