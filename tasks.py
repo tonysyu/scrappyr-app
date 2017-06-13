@@ -68,9 +68,20 @@ def check(ctx, pty=True):
 
 
 @task
-def createapp(ctx, app):
-    ctx.run('mkdir scrappyr/{}'.format(app))
-    ctx.run('python manage.py startapp {0} scrappyr/{0}'.format(app))
+def createapp(ctx, app_name):
+    """Create Django new 'app'.
+
+    In addition to running the django `startapp` manage command, this also adds the appropriate
+    app directory.
+    """
+    ctx.run('mkdir scrappyr/{}'.format(app_name))
+    ctx.run('python manage.py startapp {0} scrappyr/{0}'.format(app_name))
+
+    code = f"url(r'^{app_name}/', include('scrappyr.{app_name}.urls', namespace='{app_name}')),"
+    print("\nYou may also want to add the following url pattern to `config/urls.py`:\n")
+    print(f"   {code}")
+    print("\nAnd the following item to the `INSTALLED_APPS` list in `config/settings/base.py`:\n")
+    print(f"   'scrappyr.{app_name}',\n")
 
 
 @task
