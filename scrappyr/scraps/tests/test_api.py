@@ -6,32 +6,17 @@ from rest_framework.test import APIRequestFactory, force_authenticate
 
 from .. import models
 from ..api import ScrapViewSet
-from ...scraps.testing.factories import ScrapFactory
+from ..testing.factories import ScrapFactory
 from ...users.testing.factories import AdminUserFactory
+from ...utils.testing.harnesses import BaseDetailAPITestCase
 
 
-class BaseScrapDetailTestCase(TestCase):
+class BaseScrapDetailTestCase(BaseDetailAPITestCase):
 
-    def setUp(self):
-        self.request_factory = APIRequestFactory()
-        self.request_kwargs = {'content_type': 'application/json'}
+    viewname = 'api:scrap-detail'
 
-    def get_url(self, pk):
-        return reverse('api:scrap-detail', kwargs={'pk': pk})
-
-    def get_api_response(self, request, **kwargs):
-        user = AdminUserFactory()
-        force_authenticate(request, user=user, token='test-token-1234')
-        view = ScrapViewSet.as_view({'get': 'retrieve', 'put': 'update'})
-        return view(request, **kwargs)
-
-    def get_api_request(self, method, pk, data=None):
-        return self.request_factory.request(
-            method=method,
-            path=self.get_url(pk),
-            data=data,
-            content_type='application/json',
-        )
+    def get_view(self):
+        return ScrapViewSet.as_view({'get': 'retrieve', 'put': 'update'})
 
 
 class TestScrapDetail(BaseScrapDetailTestCase):
