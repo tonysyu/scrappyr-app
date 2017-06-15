@@ -1,31 +1,13 @@
 import json
 
-from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.test import TestCase
-from factory.django import DjangoModelFactory
 from rest_framework.test import APIRequestFactory, force_authenticate
 
 from .. import models
 from ..api import ScrapViewSet
-
-
-User = get_user_model()
-
-
-class AdminUserFactory(DjangoModelFactory):
-    class Meta:
-        model = User
-
-    username = 'admin'
-    is_superuser = True
-
-
-class ScrapFactory(DjangoModelFactory):
-    class Meta:
-        model = models.Scrap
-
-    raw_title = 'original title'
+from ...scraps.testing.factories import ScrapFactory
+from ...users.testing.factories import AdminUserFactory
 
 
 class BaseScrapDetailTestCase(TestCase):
