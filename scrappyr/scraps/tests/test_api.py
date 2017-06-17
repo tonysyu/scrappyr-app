@@ -5,15 +5,13 @@ from ..testing.factories import ScrapFactory
 from ...utils.testing.harnesses import BaseDetailAPITestCase
 
 
-class BaseScrapDetailTestCase(BaseDetailAPITestCase):
+class BaseScrapDetailAPITestCase(BaseDetailAPITestCase):
 
+    viewset_class = ScrapViewSet
     viewname = 'api:scrap-detail'
 
-    def get_view(self):
-        return ScrapViewSet.as_view({'get': 'retrieve', 'put': 'update'})
 
-
-class TestScrapDetail(BaseScrapDetailTestCase):
+class TestScrapDetail(BaseScrapDetailAPITestCase):
 
     def test_detail(self):
         scrap = ScrapFactory()
@@ -25,11 +23,8 @@ class TestScrapDetail(BaseScrapDetailTestCase):
         assert response.data['raw_title'] == scrap.raw_title
         assert response.data['html_title'] == scrap.html_title
 
-    def get_detail_request(self, pk):
-        return self.request_factory.get(self.get_url(pk), **self.request_kwargs)
 
-
-class TestScrapUpdate(BaseScrapDetailTestCase):
+class TestScrapUpdate(BaseScrapDetailAPITestCase):
 
     def test_update_new_title(self):
         scrap = ScrapFactory()
@@ -40,6 +35,3 @@ class TestScrapUpdate(BaseScrapDetailTestCase):
         scrap.refresh_from_db()
         assert scrap.raw_title == 'new title'
         assert response.data['raw_title'] == 'new title'
-
-    def get_update_request(self, pk, content):
-        return self.request_factory.put(self.get_url(pk), content, **self.request_kwargs)

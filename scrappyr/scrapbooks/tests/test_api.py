@@ -11,15 +11,10 @@ from ...users.testing.factories import AdminUserFactory
 from ...utils.testing.harnesses import BaseDetailAPITestCase
 
 
-class BaseScrapBookDetailTestCase(BaseDetailAPITestCase):
+class TestScrapBookDetail(BaseDetailAPITestCase):
 
     viewname = 'api:scrapbook-detail'
-
-    def get_view(self):
-        return ScrapBookViewSet.as_view({'get': 'retrieve'})
-
-
-class TestScrapBookDetail(BaseScrapBookDetailTestCase):
+    viewset_class = ScrapBookViewSet
 
     def test_detail(self):
         book = ScrapBookFactory()
