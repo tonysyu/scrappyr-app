@@ -1,14 +1,11 @@
-from django.core.urlresolvers import reverse
-from rest_framework.test import APIRequestFactory, APITestCase, force_authenticate
+from rest_framework.test import APITestCase
 
 from .. import models
 from ..api import ScrapBookViewSet
 from ..testing.factories import ScrapBookFactory
-from ...scrapbooks.api import add_scrap_to_book
-from ...scraps.models import Scrap
 from ...scraps.testing.factories import ScrapFactory
-from ...users.testing.factories import AdminUserFactory
 from ...utils.testing.harnesses import BaseDetailAPITestCase
+from ...utils.testing.request_utils import json_post_to_view
 
 
 class TestScrapBookDetail(BaseDetailAPITestCase):
@@ -34,22 +31,10 @@ class AddScrapToBookTestCase(APITestCase):
     def test_basic_add(self):
         book = ScrapBookFactory()
         scrap = ScrapFactory()
-        assert not book.items.exists()
-        assert not scrap.references.exists()
         assert not models.ScrapBookItem.objects.exists()
 
-        kwargs = {'scrap_id': scrap.id, 'book_id': book.id}
-        url = reverse('api:add-scrap-to-book', kwargs=kwargs)
-        request_factory = APIRequestFactory()
-        request = request_factory.post(url, content_type='application/json')
-        response = self.get_api_response(request, **kwargs)
+        json_post_to_view('api:add-scrap-to-book', scrap_id=scrap.id, book_id=book.id)
 
-        assert models.ScrapBookItem.objects.count() == 1
         item = models.ScrapBookItem.objects.first()
         assert item.book == book
         assert item.scrap == scrap
-
-    def get_api_response(self, request, **kwargs):
-        user = AdminUserFactory()
-        force_authenticate(request, user=user, token='test-token-1234')
-        return add_scrap_to_book(request, **kwargs)
