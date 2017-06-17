@@ -12,6 +12,14 @@ class ScrapBookViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.ScrapBookSerializer
 
 
+class ScrapBookItemViewSet(viewsets.ModelViewSet):
+    queryset = models.ScrapBookItem.objects.all()
+    serializer_class = serializers.ScrapBookItemSerializer
+
+    def create(self, *args, **kwargs):
+        return super().create(*args, **kwargs)
+
+
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated,))
 def add_scrap_to_book(request, scrap_id=None, book_id=None):

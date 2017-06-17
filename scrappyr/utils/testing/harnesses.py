@@ -4,10 +4,11 @@ from rest_framework.test import APIRequestFactory, APITestCase, force_authentica
 from ...users.testing.factories import AdminUserFactory
 
 
-class BaseDetailAPITestCase(APITestCase):
+class BaseAPITestCase(APITestCase):
 
     viewname = None
     viewset_class = None
+    view_definition_kwargs = None
 
     def setUp(self):
         self.request_factory = APIRequestFactory()
@@ -20,13 +21,15 @@ class BaseDetailAPITestCase(APITestCase):
         if not self.viewset_class:
             raise RuntimeError('`BaseDetailAPITestCase` subclasses must define '
                                '`viewset_class` clas variable or `get_view` method.')
-        return self.viewset_class.as_view({'get': 'retrieve', 'put': 'update'})
+        if not self.view_definition_kwargs:
+            raise RuntimeError('`BaseDetailAPITestCase` subclasses must define `view_definition_kwargs`')
+        return self.viewset_class.as_view(self.view_definition_kwargs)
 
-    def get_url(self, pk):
+    def get_url(self, **kwargs):
         viewname = self.get_viewname()
         if not viewname:
             raise AttributeError("BaseDetailAPITestCase subclasses must define `viewname`.")
-        return reverse(viewname, kwargs={'pk': pk})
+        return reverse(viewname, kwargs=kwargs)
 
     def get_api_response(self, request, **kwargs):
         user = AdminUserFactory()
@@ -34,8 +37,24 @@ class BaseDetailAPITestCase(APITestCase):
         view = self.get_view()
         return view(request, **kwargs)
 
+
+class BaseDetailAPITestCase(BaseAPITestCase):
+
+    view_definition_kwargs = {'get': 'retrieve', 'put': 'update'}
+
     def get_detail_request(self, pk):
         return self.request_factory.get(self.get_url(pk), **self.request_kwargs)
 
-    def get_update_request(self, pk, content):
-        return self.request_factory.put(self.get_url(pk), content, **self.request_kwargs)
+    def get_update_request(self, pk, data):
+        return self.request_factory.put(self.get_url(pk), data=data, **self.request_kwargs)
+
+    def get_url(self, pk, **kwargs):
+        return super().get_url(pk=pk, **kwargs)
+
+
+class BaseListAPITestCase(BaseAPITestCase):
+
+    view_definition_kwargs = {'get': 'list', 'post': 'create'}
+
+    def get_create_request(self, data):
+        return self.request_factory.post(self.get_url(), data=data, **self.request_kwargs)

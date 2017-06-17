@@ -1,17 +1,19 @@
+import json
+
 from rest_framework.test import APITestCase
 
+from .. import api
 from .. import models
-from ..api import ScrapBookViewSet
 from ..testing.factories import ScrapBookFactory
 from ...scraps.testing.factories import ScrapFactory
-from ...utils.testing.harnesses import BaseDetailAPITestCase
+from ...utils.testing.harnesses import BaseDetailAPITestCase, BaseListAPITestCase
 from ...utils.testing.request_utils import json_post_to_view
 
 
 class TestScrapBookDetail(BaseDetailAPITestCase):
 
     viewname = 'api:scrapbook-detail'
-    viewset_class = ScrapBookViewSet
+    viewset_class = api.ScrapBookViewSet
 
     def test_detail(self):
         book = ScrapBookFactory()
@@ -22,8 +24,24 @@ class TestScrapBookDetail(BaseDetailAPITestCase):
         assert response.data['id'] == book.id
         assert response.data['title'] == book.title
 
-    def get_detail_request(self, pk):
-        return self.request_factory.get(self.get_url(pk), **self.request_kwargs)
+
+class TestScrapBookList(BaseListAPITestCase):
+
+    viewname = 'api:scrapbookitem-list'
+    viewset_class = api.ScrapBookItemViewSet
+
+    def test_create(self):
+        scrap = ScrapFactory()
+        book = ScrapBookFactory()
+        data = dict(scrap=scrap.id, book=book.id)
+        assert not models.ScrapBookItem.objects.exists()
+
+        request = self.get_create_request(json.dumps(data))
+        response = self.get_api_response(request, **data)
+
+        item = models.ScrapBookItem.objects.first()
+        assert item.book == book
+        assert item.scrap == scrap
 
 
 class AddScrapToBookTestCase(APITestCase):
