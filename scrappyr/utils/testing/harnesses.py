@@ -29,11 +29,3 @@ class BaseDetailAPITestCase(APITestCase):
         force_authenticate(request, user=user, token='test-token-1234')
         view = self.get_view()
         return view(request, **kwargs)
-
-    def get_api_request(self, method, pk, data=None):
-        return self.request_factory.request(
-            method=method,
-            path=self.get_url(pk),
-            data=data,
-            content_type='application/json',
-        )

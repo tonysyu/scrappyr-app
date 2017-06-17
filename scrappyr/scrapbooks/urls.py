@@ -11,4 +11,9 @@ urlpatterns = [
         view=views.ScrapBookListView.as_view(),
         name='list',
     ),
+    url(
+        regex=r'^(?P<pk>\d+)$',
+        view=views.ScrapBookListView.as_view(),
+        name='detail',
+    ),
 ]

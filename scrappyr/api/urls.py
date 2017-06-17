@@ -12,4 +12,10 @@ router = routers.DefaultRouter()
 router.register(r'scraps', scraps_api.ScrapViewSet)
 router.register(r'scrapbooks', scrapbooks_api.ScrapBookViewSet)
 
-urlpatterns = router.urls
+urlpatterns = router.urls + [
+    url(
+        '^scrapbooks/(?P<book_id>\d+)/scrap/(?P<scrap_id>\d+)$',
+        scrapbooks_api.add_scrap_to_book,
+        name='add-scrap-to-book',
+    ),
+]
