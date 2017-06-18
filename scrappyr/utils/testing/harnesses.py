@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.db import transaction
 from rest_framework.test import APIRequestFactory, APITestCase, force_authenticate
 
-from ...users.testing.factories import AdminUserFactory
+from scrappyr.users.testing.factories import AdminUserFactory
 
 
 class BaseAPITestCase(APITestCase):
@@ -23,7 +23,8 @@ class BaseAPITestCase(APITestCase):
             raise RuntimeError('`BaseDetailAPITestCase` subclasses must define '
                                '`viewset_class` clas variable or `get_view` method.')
         if not self.view_definition_kwargs:
-            raise RuntimeError('`BaseDetailAPITestCase` subclasses must define `view_definition_kwargs`')
+            msg = '`BaseDetailAPITestCase` subclasses must define `view_definition_kwargs`'
+            raise RuntimeError(msg)
         return self.viewset_class.as_view(self.view_definition_kwargs)
 
     def get_url(self, **kwargs):

@@ -1,11 +1,12 @@
 from rest_framework.test import APITestCase
 
+from scrappyr.scraps.testing.factories import ScrapFactory
+from scrappyr.utils.testing.harnesses import BaseDetailAPITestCase, BaseListAPITestCase
+from scrappyr.utils.testing.request_utils import json_post_to_view
+
 from .. import api
 from .. import models
 from ..testing.factories import ScrapBookFactory
-from ...scraps.testing.factories import ScrapFactory
-from ...utils.testing.harnesses import BaseDetailAPITestCase, BaseListAPITestCase
-from ...utils.testing.request_utils import json_post_to_view
 
 
 class TestScrapBookDetail(BaseDetailAPITestCase):
@@ -36,6 +37,7 @@ class TestScrapBookList(BaseListAPITestCase):
         request = self.get_create_request(book.id, {'scrap': scrap.id})
         response = self.get_api_response(request, scrap=scrap.id, book=book.id)
 
+        assert not response.exception
         item = models.ScrapBookItem.objects.first()
         assert item.book == book
         assert item.scrap == scrap

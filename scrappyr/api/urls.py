@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 from django.conf.urls import url
 from rest_framework import routers
 
-from ..scraps import api as scraps_api
 from ..scrapbooks import api as scrapbooks_api
+from ..scraps import api as scraps_api
 
 
 router = routers.DefaultRouter()

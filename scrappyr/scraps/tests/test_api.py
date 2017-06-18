@@ -1,8 +1,7 @@
-import json
+from scrappyr.utils.testing.harnesses import BaseDetailAPITestCase
 
 from ..api import ScrapViewSet
 from ..testing.factories import ScrapFactory
-from ...utils.testing.harnesses import BaseDetailAPITestCase
 
 
 class BaseScrapDetailAPITestCase(BaseDetailAPITestCase):

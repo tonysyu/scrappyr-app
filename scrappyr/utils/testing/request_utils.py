@@ -1,7 +1,7 @@
 from django.core.urlresolvers import resolve, reverse
 from rest_framework.test import APIRequestFactory, force_authenticate
 
-from ...users.testing.factories import AdminUserFactory
+from scrappyr.users.testing.factories import AdminUserFactory
 
 
 def json_post_to_view(viewname, **kwargs):

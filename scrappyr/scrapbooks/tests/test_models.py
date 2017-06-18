@@ -1,8 +1,6 @@
 from django.test import TestCase
 
-from .. import models
 from ..testing import factories
-from ...scraps.testing.factories import ScrapFactory
 
 
 class ScrapBookTestCase(TestCase):

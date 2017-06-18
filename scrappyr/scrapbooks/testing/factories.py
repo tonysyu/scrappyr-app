@@ -1,7 +1,8 @@
 import factory
 
+from scrappyr.scraps.testing.factories import ScrapFactory
+
 from .. import models
-from ...scraps.testing.factories import ScrapFactory
 
 
 class ScrapBookFactory(factory.django.DjangoModelFactory):
