@@ -28,7 +28,7 @@ class TestScrapUpdate(BaseScrapDetailAPITestCase):
 
     def test_update_new_title(self):
         scrap = ScrapFactory()
-        request = self.get_update_request(scrap.id, json.dumps({"raw_title": "new title"}))
+        request = self.get_update_request(scrap.id, {"raw_title": "new title"})
         response = self.get_api_response(request, pk=scrap.id)
 
         assert not response.exception
