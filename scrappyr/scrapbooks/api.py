@@ -16,8 +16,10 @@ class ScrapBookItemViewSet(viewsets.ModelViewSet):
     queryset = models.ScrapBookItem.objects.all()
     serializer_class = serializers.ScrapBookItemSerializer
 
-    def create(self, *args, **kwargs):
-        return super().create(*args, **kwargs)
+    def create(self, request, **kwargs):
+        # Add url kwargs to post data, which ModelViewSet uses to create ScrapBookItem
+        request.data.update(kwargs)
+        return super().create(request, **kwargs)
 
 
 @api_view(['POST'])

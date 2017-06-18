@@ -36,12 +36,15 @@ class TestScrapBookList(BaseListAPITestCase):
         data = dict(scrap=scrap.id, book=book.id)
         assert not models.ScrapBookItem.objects.exists()
 
-        request = self.get_create_request(json.dumps(data))
+        request = self.get_create_request(book.id, json.dumps({'scrap': scrap.id}))
         response = self.get_api_response(request, **data)
 
         item = models.ScrapBookItem.objects.first()
         assert item.book == book
         assert item.scrap == scrap
+
+    def get_create_request(self, book_id, data):
+        return self.request_factory.post(self.get_url(book_id=book_id), data=data, **self.request_kwargs)
 
 
 class AddScrapToBookTestCase(APITestCase):

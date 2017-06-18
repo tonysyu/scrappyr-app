@@ -11,7 +11,8 @@ from ..scrapbooks import api as scrapbooks_api
 router = routers.DefaultRouter()
 router.register(r'scraps', scraps_api.ScrapViewSet)
 router.register(r'scrapbooks', scrapbooks_api.ScrapBookViewSet)
-router.register(r'scrapbooks/items', scrapbooks_api.ScrapBookItemViewSet)
+# The url intentionally uses "items" instead of "scraps" because it expects item ids not scrap ids.
+router.register(r'scrapbooks/(?P<book_id>\d+)/items', scrapbooks_api.ScrapBookItemViewSet)
 
 urlpatterns = router.urls + [
     url(
