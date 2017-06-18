@@ -53,13 +53,11 @@ function scrapEditor(state = [], action) {
 }
 
 
-// FIXME: Refactor updateScrap and deleteScrap to remove duplication
-
-async function updateScrap(scrap) {
+async function fetchScrapDetail(method, scrap, ) {
   const response = await fetch(
     `/api/scraps/${scrap.id}/`,
     {
-      method: 'put',
+      method: method,
       credentials: 'include',
       body: JSON.stringify(scrap),
       headers: {
@@ -68,27 +66,22 @@ async function updateScrap(scrap) {
       },
     },
   );
+  return response;
+}
+
+async function updateScrap(scrap) {
+  const response = await fetchScrapDetail('put', scrap)
   const newScrap = await response.json();
   store.dispatch(actionCreators.receiveSingleScrap(newScrap));
 }
 
 async function deleteScrap(scrap) {
-  const response = await fetch(
-    `/api/scraps/${scrap.id}/`,
-    {
-      method: 'delete',
-      credentials: 'include',
-      body: JSON.stringify(scrap),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken'),
-      },
-    },
-  );
+  const response = await fetchScrapDetail('delete', scrap);
   if (response.ok) {
     store.dispatch(actionCreators.removeScrap(scrap));
   }
 }
+
 
 const rootReducer = combineReducers({
   scrapEditor,
