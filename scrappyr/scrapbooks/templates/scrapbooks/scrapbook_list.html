@@ -6,6 +6,25 @@
 
 {% block content %}
 
-<p>Hi</p>
+<div class="clearfix">
+  {% crispy form %}
+</div>
+
+{% for book in scrap_book_list %}
+<div class="card" data-book-url="{{ book.get_absolute_url }}">
+  <div class="card-block">
+    <h4 class="card-title">{{ book.title }}</h4>
+  </div>
+</div>
+{% endfor %}
+
+<script>
+  window.onload = function() {
+    var cards = document.getElementsByClassName("card");
+    for (var i=0; i < cards.length; i++) {
+      cards[i].onclick = function() { window.location.replace(this.dataset.bookUrl); };
+    }
+  };
+</script>
 
 {% endblock %}

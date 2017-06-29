@@ -2,11 +2,15 @@ form.add-scrap {
   margin: 30px 5px;
 }
 
-div.scrap {
+div.card {
   position: relative;
   padding: .3em;
   margin-bottom: 0;
   border: 0;
+
+  :hover {
+    background-color: #f0f0f0;
+  }
 
   .card-block {
     padding: 0.5em;
