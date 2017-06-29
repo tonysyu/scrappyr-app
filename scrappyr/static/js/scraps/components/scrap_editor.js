@@ -47,6 +47,7 @@ export default class ScrapEditor extends React.Component {
               More
             </DropdownToggle>
             <DropdownMenu>
+              <DropdownItem onClick={this.addToScrapBook.bind(this)}>Add to scrapbook...</DropdownItem>
               <DropdownItem onClick={this.deleteScrap.bind(this)}>Delete</DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
@@ -80,5 +81,12 @@ export default class ScrapEditor extends React.Component {
     const { scrap } = this.props.scrapEditor;
     this.props.deleteScrap(scrap);
     this.close();
+  }
+
+  addToScrapBook() {
+    const { scrap } = this.props.scrapEditor;
+    // FIXME: The scrapbook id should NOT be hardcoded!!!
+    const scrapbook_id = 1;
+    this.props.addToScrapBook(scrap, scrapbook_id);
   }
 }

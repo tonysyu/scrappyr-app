@@ -16,7 +16,7 @@ router.register(r'scrapbooks/(?P<book_id>\d+)/items', scrapbooks_api.ScrapBookIt
 
 urlpatterns = router.urls + [
     url(
-        '^scrapbooks/(?P<book_id>\d+)/scrap/(?P<scrap_id>\d+)$',
+        '^scrapbooks/(?P<book_id>\d+)/scrap/(?P<scrap_id>\d+)/$',
         scrapbooks_api.add_scrap_to_book,
         name='add-scrap-to-book',
     ),

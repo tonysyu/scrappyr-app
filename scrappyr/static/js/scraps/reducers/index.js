@@ -47,23 +47,30 @@ function scrapEditor(state = [], action) {
     case 'DELETE_SCRAP':
       deleteScrap(action.scrap);
       return state;
+    case 'ADD_TO_SCRAPBOOK':
+      addToScrapBook(action.scrap, action.scrapbook_id);
+      return state;
     default:
       return state;
   }
 }
 
 
+const defaultHeader = {
+  credentials: 'include',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRFToken': getCookie('csrftoken'),
+  },
+};
+
+
 async function fetchScrapDetail(method, scrap, ) {
   const response = await fetch(
     `/api/scraps/${scrap.id}/`,
-    {
+    { ...defaultHeader,
       method: method,
-      credentials: 'include',
       body: JSON.stringify(scrap),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken'),
-      },
     },
   );
   return response;
@@ -82,6 +89,15 @@ async function deleteScrap(scrap) {
   }
 }
 
+async function addToScrapBook(scrap, scrapbook_id) {
+  const response = await fetch(
+    `/api/scrapbooks/${scrapbook_id}/scrap/${scrap.id}/`,
+    { ...defaultHeader, method: 'POST' },
+  );
+  if (response.ok) {
+    console.log('Scrap added to scrapbook (FIXME: change this to user-displayed message)');
+  }
+}
 
 const rootReducer = combineReducers({
   scrapEditor,
