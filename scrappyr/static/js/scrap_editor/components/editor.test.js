@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import ReactTestUtils from 'react-dom/test-utils';
 
-import ScrapEditor from './scrap_editor';
+import ScrapEditor from './editor';
 
 
 test('scrap title', function () {

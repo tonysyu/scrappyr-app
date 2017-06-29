@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 
 import store from './store';
 import ScrapList from './components/scrap_list';
-import ScrapEditor from './components/scrap_editor';
+import ScrapEditor from '../scrap_editor/components/editor';
 import { createReactReduxApp } from '../utils/react_utils';
 import * as actionCreators from './actions';
 
