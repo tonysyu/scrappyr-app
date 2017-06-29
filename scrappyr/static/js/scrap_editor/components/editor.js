@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, ButtonDropdown, ButtonGroup } from 'reactstrap';
 import { DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 
+import ScrapControls from './controls';
+
 
 export default class ScrapEditor extends React.Component {
 
@@ -28,30 +30,9 @@ export default class ScrapEditor extends React.Component {
               className="form-control"
               defaultValue={scrapTitle} />
           </div>
-          {this.renderControls()}
+          <ScrapControls {...this.props} />
         </form>
         <Button className="btn btn-sm close" onClick={this.close.bind(this)}>&times;</Button>
-      </div>
-    );
-  }
-
-  renderControls() {
-    return (
-      <div className="controls">
-        <ButtonGroup>
-          <input type="submit" className="btn btn-primary" value="Update"/>
-          <ButtonDropdown
-            isOpen={this.state.moreActionsDropdownOpen}
-            toggle={this.toggleMoreActionsDropdown.bind(this)}>
-            <DropdownToggle caret>
-              More
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={this.addToScrapBook.bind(this)}>Add to scrapbook...</DropdownItem>
-              <DropdownItem onClick={this.deleteScrap.bind(this)}>Delete</DropdownItem>
-            </DropdownMenu>
-          </ButtonDropdown>
-        </ButtonGroup>
       </div>
     );
   }
@@ -69,24 +50,5 @@ export default class ScrapEditor extends React.Component {
 
   close() {
     this.props.closeScrapEditor();
-  }
-
-  toggleMoreActionsDropdown() {
-    this.setState({
-      moreActionsDropdownOpen: !this.state.moreActionsDropdownOpen,
-    });
-  }
-
-  deleteScrap() {
-    const { scrap } = this.props.scrapEditor;
-    this.props.deleteScrap(scrap);
-    this.close();
-  }
-
-  addToScrapBook() {
-    const { scrap } = this.props.scrapEditor;
-    // FIXME: The scrapbook id should NOT be hardcoded!!!
-    const scrapbook_id = 1;
-    this.props.addToScrapBook(scrap, scrapbook_id);
   }
 }
