@@ -1,6 +1,8 @@
 import React from 'react';
-import { ButtonDropdown, ButtonGroup } from 'reactstrap';
-import { DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import {
+  ButtonDropdown, ButtonGroup,
+  DropdownItem, DropdownMenu, DropdownToggle,
+} from 'reactstrap';
 
 
 export default class ScrapControls extends React.Component {
@@ -8,7 +10,7 @@ export default class ScrapControls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      moreActionsDropdownOpen: false,
+      moreActionsDropdownOpen: true,
     };
   }
 
@@ -18,15 +20,12 @@ export default class ScrapControls extends React.Component {
         <ButtonGroup>
           <input type="submit" className="btn btn-primary" value="Update"/>
           <ButtonDropdown
-            isOpen={this.state.moreActionsDropdownOpen}
-            toggle={this.toggleMoreActionsDropdown.bind(this)}>
+              isOpen={this.state.moreActionsDropdownOpen}
+              toggle={this.toggleMoreActionsDropdown.bind(this)}>
             <DropdownToggle caret>
-              More
+              <span className="sr-only">More</span>
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem onClick={this.addToScrapBook.bind(this)}>
-                Add to scrapbook...
-              </DropdownItem>
               <DropdownItem onClick={this.deleteScrap.bind(this)}>Delete</DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
@@ -45,12 +44,5 @@ export default class ScrapControls extends React.Component {
     const { scrap } = this.props.scrapEditor;
     this.props.deleteScrap(scrap);
     this.props.closeScrapEditor();
-  }
-
-  addToScrapBook() {
-    const { scrap } = this.props.scrapEditor;
-    // FIXME: The scrapbook id should NOT be hardcoded!!!
-    const scrapbook_id = 1;
-    this.props.addToScrapBook(scrap, scrapbook_id);
   }
 }

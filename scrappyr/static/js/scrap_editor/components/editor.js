@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, ButtonDropdown, ButtonGroup } from 'reactstrap';
-import { DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Button } from 'reactstrap';
 
+import RelatedScrapbooks from './related_scrapbooks';
 import ScrapControls from './controls';
 
 
@@ -32,7 +32,8 @@ export default class ScrapEditor extends React.Component {
           </div>
           <ScrapControls {...this.props} />
         </form>
-        <Button className="btn btn-sm close" onClick={this.close.bind(this)}>&times;</Button>
+        <RelatedScrapbooks {...this.props} />
+        <Button className="btn-sm close" onClick={this.close.bind(this)}>&times;</Button>
       </div>
     );
   }
