@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 
 export default class RelatedScrapbooks extends React.Component {

@@ -9,9 +9,6 @@ export default class ScrapControls extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      moreActionsDropdownOpen: true,
-    };
   }
 
   render() {
@@ -20,7 +17,6 @@ export default class ScrapControls extends React.Component {
         <ButtonGroup>
           <input type="submit" className="btn btn-primary" value="Update"/>
           <ButtonDropdown
-              isOpen={this.state.moreActionsDropdownOpen}
               toggle={this.toggleMoreActionsDropdown.bind(this)}>
             <DropdownToggle caret>
               <span className="sr-only">More</span>
@@ -35,9 +31,6 @@ export default class ScrapControls extends React.Component {
   }
 
   toggleMoreActionsDropdown() {
-    this.setState({
-      moreActionsDropdownOpen: !this.state.moreActionsDropdownOpen,
-    });
   }
 
   deleteScrap() {
