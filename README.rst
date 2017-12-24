@@ -39,7 +39,17 @@ Basic Commands
 ==============
 
 Admin commands are implemented with a combination of Django's mangement command infrastructure
-and pyinvoke for easily creating custom commands. 
+and pyinvoke for easily creating custom commands.
+
+Starting up development servers
+-------------------------------
+
+During normal development, it's useful to start up both a Django server and a node server to
+build static files::
+
+   $ invoke dev-server
+   $ npm run watch-static
+
 
 Helping yourself
 ----------------
