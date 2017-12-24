@@ -6,13 +6,6 @@ import ScrapControls from './controls';
 
 export default class ScrapEditor extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      moreActionsDropdownOpen: false,
-    };
-  }
-
   render() {
     const { scrap } = this.props.scrapEditor;
     const scrapTitle = scrap ? scrap.raw_title : '';
