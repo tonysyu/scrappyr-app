@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% load staticfiles i18n %}
+{% load render_bundle from webpack_loader %}
+
+{% block content %}
+
+  <ul>
+  {% for scrap_item in scrapbook.items.all %}
+    <li>{{ scrap_item.scrap.html_title|safe }}</li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}

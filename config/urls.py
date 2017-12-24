@@ -16,9 +16,9 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
 
-    # User management
     url(r'^users/', include('scrappyr.users.urls', namespace='users')),
     url(r'^scraps/', include('scrappyr.scraps.urls', namespace='scraps')),
+    url(r'^scrapbooks/', include('scrappyr.scrapbooks.urls', namespace='scrapbooks')),
     url(r'^api/', include('scrappyr.api.urls', namespace='api')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

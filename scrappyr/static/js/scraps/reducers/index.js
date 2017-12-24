@@ -47,46 +47,55 @@ function scrapEditor(state = [], action) {
     case 'DELETE_SCRAP':
       deleteScrap(action.scrap);
       return state;
+    case 'ADD_TO_SCRAPBOOK':
+      addToScrapBook(action.scrap, action.scrapbook_id);
+      return state;
     default:
       return state;
   }
 }
 
 
-// FIXME: Refactor updateScrap and deleteScrap to remove duplication
+const defaultHeader = {
+  credentials: 'include',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRFToken': getCookie('csrftoken'),
+  },
+};
 
-async function updateScrap(scrap) {
+
+async function fetchScrapDetail(method, scrap, ) {
   const response = await fetch(
     `/api/scraps/${scrap.id}/`,
-    {
-      method: 'put',
-      credentials: 'include',
+    { ...defaultHeader,
+      method: method,
       body: JSON.stringify(scrap),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken'),
-      },
     },
   );
+  return response;
+}
+
+async function updateScrap(scrap) {
+  const response = await fetchScrapDetail('put', scrap)
   const newScrap = await response.json();
   store.dispatch(actionCreators.receiveSingleScrap(newScrap));
 }
 
 async function deleteScrap(scrap) {
-  const response = await fetch(
-    `/api/scraps/${scrap.id}/`,
-    {
-      method: 'delete',
-      credentials: 'include',
-      body: JSON.stringify(scrap),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken'),
-      },
-    },
-  );
+  const response = await fetchScrapDetail('delete', scrap);
   if (response.ok) {
     store.dispatch(actionCreators.removeScrap(scrap));
+  }
+}
+
+async function addToScrapBook(scrap, scrapbook_id) {
+  const response = await fetch(
+    `/api/scrapbooks/${scrapbook_id}/scrap/${scrap.id}/`,
+    { ...defaultHeader, method: 'POST' },
+  );
+  if (response.ok) {
+    console.log('Scrap added to scrapbook (FIXME: change this to user-displayed message)');
   }
 }
 

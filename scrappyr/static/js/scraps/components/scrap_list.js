@@ -12,9 +12,11 @@ class ScrapList extends React.Component {
     scraps.sort((a, b) => compareDateStrings(a.modified, b.modified));
 
     return (
-      <section>
-        {scraps.map((scrapItem, index) => this._renderScrap(scrapItem, index))}
-      </section>
+      <div className="container">
+        <div className="row">
+          {scraps.map((scrapItem, index) => this._renderScrap(scrapItem, index))}
+        </div>
+      </div>
     );
   }
 

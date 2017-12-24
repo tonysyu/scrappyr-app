@@ -58,8 +58,9 @@ THIRD_PARTY_APPS = [
 
 # Apps specific for this project go here.
 LOCAL_APPS = [
-    'scrappyr.scraps',
-    'scrappyr.users',
+    'scrappyr.users.apps.UsersConfig',
+    'scrappyr.scraps.apps.ScrapsConfig',
+    'scrappyr.scrapbooks.apps.ScrapBooksConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

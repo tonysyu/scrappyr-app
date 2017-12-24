@@ -1,7 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import ReactTestUtils from 'react-dom/test-utils';
 
-import ScrapEditor from './scrap_editor';
+import ScrapEditor from './editor';
 
 
 test('scrap title', function () {
@@ -33,32 +33,6 @@ test('handleSubmit with updated title', function () {
   editor.handleSubmit({ preventDefault: () => {} });
 
   expect(updateScrap.mock.calls[0][0]).toEqual({ raw_title: 'new-title' });
-});
-
-
-test('deleteScrap', function () {
-  const scrap = { id: 42 };
-  const deleteScrap = jest.fn();
-  const closeScrapEditor = jest.fn();
-  const editor = getScrapEditor(scrap, { deleteScrap, closeScrapEditor });
-
-  editor.deleteScrap();
-
-  expect(deleteScrap.mock.calls.length).toBe(1);
-  expect(deleteScrap.mock.calls[0][0]).toEqual(scrap);
-  expect(closeScrapEditor.mock.calls.length).toBe(1);
-});
-
-
-test('toggleMoreActionsDropdown', function () {
-  const editor = getScrapEditor();
-  expect(editor.state.moreActionsDropdownOpen).toBe(false);
-
-  editor.toggleMoreActionsDropdown();
-  expect(editor.state.moreActionsDropdownOpen).toBe(true);
-
-  editor.toggleMoreActionsDropdown();
-  expect(editor.state.moreActionsDropdownOpen).toBe(false);
 });
 
 

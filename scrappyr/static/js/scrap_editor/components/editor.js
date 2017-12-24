@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, ButtonDropdown, ButtonGroup } from 'reactstrap';
-import { DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Button } from 'reactstrap';
+
+import RelatedScrapbooks from './related_scrapbooks';
+import ScrapControls from './controls';
 
 
 export default class ScrapEditor extends React.Component {
@@ -28,29 +30,10 @@ export default class ScrapEditor extends React.Component {
               className="form-control"
               defaultValue={scrapTitle} />
           </div>
-          {this.renderControls()}
+          <ScrapControls {...this.props} />
         </form>
-        <Button className="btn btn-sm close" onClick={this.close.bind(this)}>&times;</Button>
-      </div>
-    );
-  }
-
-  renderControls() {
-    return (
-      <div className="controls">
-        <ButtonGroup>
-          <input type="submit" className="btn btn-primary" value="Update"/>
-          <ButtonDropdown
-            isOpen={this.state.moreActionsDropdownOpen}
-            toggle={this.toggleMoreActionsDropdown.bind(this)}>
-            <DropdownToggle caret>
-              More
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={this.deleteScrap.bind(this)}>Delete</DropdownItem>
-            </DropdownMenu>
-          </ButtonDropdown>
-        </ButtonGroup>
+        <RelatedScrapbooks {...this.props} />
+        <Button className="btn-sm close" onClick={this.close.bind(this)}>&times;</Button>
       </div>
     );
   }
@@ -68,17 +51,5 @@ export default class ScrapEditor extends React.Component {
 
   close() {
     this.props.closeScrapEditor();
-  }
-
-  toggleMoreActionsDropdown() {
-    this.setState({
-      moreActionsDropdownOpen: !this.state.moreActionsDropdownOpen,
-    });
-  }
-
-  deleteScrap() {
-    const { scrap } = this.props.scrapEditor;
-    this.props.deleteScrap(scrap);
-    this.close();
   }
 }
