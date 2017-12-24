@@ -2,15 +2,15 @@ form.add-scrap {
   margin: 30px 5px;
 }
 
+.show > .dropdown-menu {
+  display: block;
+}
+
 div.scrap {
   position: relative;
   padding: .3em;
   margin-bottom: 0;
   border: 0;
-
-  :hover {
-    background-color: #f0f0f0;
-  }
 
   .scrap-block {
     padding: 0.5em;
