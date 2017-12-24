@@ -77,7 +77,7 @@ async function fetchScrapDetail(method, scrap, ) {
 }
 
 async function updateScrap(scrap) {
-  const response = await fetchScrapDetail('put', scrap)
+  const response = await fetchScrapDetail('put', scrap);
   const newScrap = await response.json();
   store.dispatch(actionCreators.receiveSingleScrap(newScrap));
 }

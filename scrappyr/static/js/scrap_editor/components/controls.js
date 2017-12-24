@@ -1,8 +1,4 @@
 import React from 'react';
-import {
-  ButtonDropdown, ButtonGroup,
-  DropdownItem, DropdownMenu, DropdownToggle,
-} from 'reactstrap';
 
 
 export default class ScrapControls extends React.Component {
@@ -14,23 +10,19 @@ export default class ScrapControls extends React.Component {
   render() {
     return (
       <div className="controls">
-        <ButtonGroup>
-          <input type="submit" className="btn btn-primary" value="Update"/>
-          <ButtonDropdown
-              toggle={this.toggleMoreActionsDropdown.bind(this)}>
-            <DropdownToggle caret>
-              <span className="sr-only">More</span>
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={this.deleteScrap.bind(this)}>Delete</DropdownItem>
-            </DropdownMenu>
-          </ButtonDropdown>
-        </ButtonGroup>
+        <div className="btn-group">
+          <input type="submit" className="btn btn-primary" value="Update" />
+          <button type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span className="caret"></span>
+            <span className="sr-only">More</span>
+          </button>
+          <div className='dropdown-menu'>
+            <button className="dropdown-item" onClick={this.deleteScrap.bind(this)}>Delete</button>
+          </div>
+        </div>
       </div>
     );
-  }
-
-  toggleMoreActionsDropdown() {
   }
 
   deleteScrap() {

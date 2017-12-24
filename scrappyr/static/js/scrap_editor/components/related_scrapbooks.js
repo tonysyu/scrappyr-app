@@ -1,19 +1,19 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 
 
 export default class RelatedScrapbooks extends React.Component {
 
   render() {
     return (
-      <div className="related-scrapbooks">
-        <form ref="scrapbookForm" className="scrapbook-form" onSubmit={this.addToScrapBook.bind(this)}>
+      <div className="related-scrapbooks card">
+        <form ref="scrapbookForm" className="scrapbook-form"
+          onSubmit={this.addToScrapBook.bind(this)}>
           <div className="form-group">
             <input type="number" className="form-control" ref="scrapbookId" name="scrapbookId"/>
           </div>
-          <Button type="submit" className="btn-sm btn-primary">
+          <button type="submit" className="btn btn-sm btn-primary">
             Add to scrapbook
-          </Button>
+          </button>
         </form>
       </div>
     );
