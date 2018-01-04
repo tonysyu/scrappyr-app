@@ -25,7 +25,7 @@ export default class RelatedScrapbooks extends React.Component {
             <Async
               value={this.state.selectedOption.value}
               onChange={this.handleChange.bind(this)}
-              loadOptions={getScrapBookOptions}
+              loadOptions={getScrapbookOptions}
             />
           </div>
           <button type="submit" className="btn btn-sm btn-primary">
@@ -45,15 +45,15 @@ export default class RelatedScrapbooks extends React.Component {
   }
 }
 
-const getScrapBookOptions = (input) => {
+const getScrapbookOptions = (input) => {
   return fetch('/api/scrapbooks/')
     .then((response) => {
       return response.json();
     }).then((json) => {
       return { options: json.map(adaptScrapbookToOption) };
     });
-}
+};
 
 const adaptScrapbookToOption = (scrapbook) => {
   return { value: scrapbook.id, label: scrapbook.title };
-}
+};
